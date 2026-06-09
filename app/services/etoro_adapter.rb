@@ -16,30 +16,26 @@ class EtoroAdapter
 
     ## Getting response
     response = conn.get('/api/v1/trading/info/real/pnl')
-    equity_summary = response.body
-
-    @total_balance = equity_summary["credit"]
-    @available_cash =  calculate_available_cash(equity_summary)
-    @total_investments = calculate_total_investments(equity_summary)
-    @profit_loss = equity_summary["unrealizedPnL"]
-    @currency = "USD"
+    equity_summary = response.body["clientPortfolio"]
 
     {
-      equity: @total_balance,
-      available_cash: @available_cash,
-      total_investments: @total_investments,
-      profit_loss: @profit_loss,
-      currency: @currency
+      total_balance: equity_summary["credit"],
+      available_cash: calculate_available_cash(equity_summary),
+      total_investments:  calculate_total_investments(equity_summary),
+      profit_loss: equity_summary["unrealizedPnL"],
+      currency: "USD"
     }
 
   end
-  private
+
   def calculate_available_cash(equity_summary)
     ## formula "https://api-portal.etoro.com/guides/calculate-available-cash"
     credit = equity_summary["credit"]
     orders = calculate_orders(equity_summary)
 
     available_cash = credit - (orders[:orders_for_open_total] + orders[:orders_total])
+
+
 
   end
 
@@ -97,6 +93,7 @@ class EtoroAdapter
     orders_for_open_external_cost_total = 0
 
     orders_for_open = equity_summary["ordersForOpen"]
+
     orders_for_open.each do |order|
       if order["mirrorID"] == 0
         orders_for_open_total += order["amount"]
@@ -105,9 +102,9 @@ class EtoroAdapter
     end
 
     orders = equity_summary["orders"]
-    orders.each do |order|
-      orders_total += order["amount"]
-    end
+      orders.each do |order|
+        orders_total += order["amount"]
+      end
     {
       orders_total: orders_total,
       orders_for_open_total: orders_for_open_total,

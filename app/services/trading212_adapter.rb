@@ -3,7 +3,7 @@ class Trading212Adapter
   def initialize(user)
     @user = user
     @credentials = @user.api_credentials.find_by(provider: "trading212")
-    @data = call
+
   end
   def call
     conn = Faraday.new('https://live.trading212.com') do |f|
@@ -15,11 +15,10 @@ class Trading212Adapter
     equity_summary = response.body
     # returning hash for eur_converter service
     {
-      equity: equity_summary["totalValue"],
+      total_balance: equity_summary["totalValue"],
       available_cash: equity_summary["cash"]["availableToTrade"],
-      investments: equity_summary["investments"]["totalCost"], #### meplatí
-      unrealized_profit_loss: equity_summary["investments"]["unrealizedProfitLoss"],
-      realized_profit_loss: equity_summary["investments"]["realizedProfitLoss"],
+      total_investments: equity_summary["investments"]["totalCost"],
+      profit_loss: equity_summary["investments"]["unrealizedProfitLoss"],
       currency: equity_summary["currency"]
     }
 
