@@ -1,0 +1,5 @@
+sync_portfolio_job:
+  cron: '15 * * * *'
+  class: 'SyncPortfolioJob'
+  queue: default
+  args: []
