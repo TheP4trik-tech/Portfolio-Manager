@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_02_151715) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_13_125829) do
   create_table "api_credentials", force: :cascade do |t|
     t.string "api_id"
     t.string "api_key"
@@ -19,6 +19,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_02_151715) do
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_api_credentials_on_user_id"
+  end
+
+  create_table "cash_snapshots", force: :cascade do |t|
+    t.decimal "available_cash"
+    t.datetime "created_at", null: false
+    t.string "currency"
+    t.decimal "profit_loss"
+    t.decimal "total_balance"
+    t.decimal "total_investments"
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_cash_snapshots_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -31,4 +43,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_02_151715) do
   end
 
   add_foreign_key "api_credentials", "users"
+  add_foreign_key "cash_snapshots", "users"
 end

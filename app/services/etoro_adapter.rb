@@ -12,12 +12,14 @@ class EtoroAdapter
     f.headers['x-user-key'] = @credentials.api_key
     f.request :url_encoded
     f.response :json
+    f.response :raise_error
     end
 
     ## Getting response
     response = conn.get('/api/v1/trading/info/real/pnl')
     equity_summary = response.body["clientPortfolio"]
 
+    #return hash for eur_converter service
     {
       total_balance: equity_summary["credit"],
       available_cash: calculate_available_cash(equity_summary),
@@ -28,6 +30,7 @@ class EtoroAdapter
 
   end
 
+  # calculate available cash
   def calculate_available_cash(equity_summary)
     ## formula "https://api-portal.etoro.com/guides/calculate-available-cash"
     credit = equity_summary["credit"]
@@ -39,6 +42,7 @@ class EtoroAdapter
 
   end
 
+  # calculate total investments
   def calculate_total_investments(equity_summary)
     ## formula "https://api-portal.etoro.com/guides/calculate-total-invested"
 
@@ -54,6 +58,8 @@ class EtoroAdapter
 
   end
 
+
+  # calculate positions total
   def calculate_positions_total(equity_summary)
     positions_total = 0
     positions = equity_summary["positions"]
@@ -63,6 +69,7 @@ class EtoroAdapter
     positions_total
   end
 
+  # calculate mirrors
   def calculate_mirrors(equity_summary)
     mirrors_positions_total = 0
     mirrors_available_cash_total = 0
@@ -87,6 +94,7 @@ class EtoroAdapter
     }
   end
 
+  ## calculate orders
   def calculate_orders(equity_summary)
     orders_total = 0
     orders_for_open_total = 0
