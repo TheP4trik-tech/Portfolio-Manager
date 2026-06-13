@@ -1,10 +1,11 @@
 class EurConverter
+  attr_reader :data
   def initialize(user)
    @user = user
    @users_brokers = @user.api_credentials.pluck(:provider)
   end
 
-  # Makes sum of all eur converted data from brokers
+  # Makes sum of all eur converted data from brokers, returning hash for CashSnapshot service
   def call
       converted_portfolios  = convert_to_eur
       total_balance, available_cash, total_investments, profit_loss = 0, 0, 0, 0
@@ -15,12 +16,16 @@ class EurConverter
         total_investments += portfolio[:total_investments]
         profit_loss  += portfolio[:profit_loss]
       end
+      data =
       {
+        user: @user,
+        currency: "EUR",
         total_balance: total_balance,
         available_cash: available_cash,
         total_investments: total_investments,
-        profit_loss: profit_loss
+        profit_loss: profit_loss,
       }
+
 
   end
 
@@ -50,6 +55,7 @@ class EurConverter
     connection = Faraday.new('https://api.frankfurter.dev') do |f|
       f.request :url_encoded
       f.response :json
+      f.response :raise_error
     end
     currency_endpoint = connection.get('/v2/rates')
     currency_rates = currency_endpoint.body
@@ -62,7 +68,7 @@ class EurConverter
   def convert_to_eur
     converted_portfolios =  build_adapters.map do |adapter|
       adapter_data = adapter.call
-      currency_rate = get_conversion_rate(adapter_data[:currency])
+      currency_rate = fetch_currency(adapter_data[:currency])
       {
         total_balance: adapter_data[:total_balance] / currency_rate,
         available_cash: adapter_data[:available_cash] / currency_rate,

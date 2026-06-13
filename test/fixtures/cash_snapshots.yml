@@ -2,14 +2,14 @@
 
 one:
   user: one
-  currency: MyString
-  total_value: 9.99
-  profit: 9.99
-  free_cash: 9.99
+  total_balance: 9.99
+  available_cash: 9.99
+  total_investments: 9.99
+  profit_loss: 9.99
 
 two:
   user: two
-  currency: MyString
-  total_value: 9.99
-  profit: 9.99
-  free_cash: 9.99
+  total_balance: 9.99
+  available_cash: 9.99
+  total_investments: 9.99
+  profit_loss: 9.99

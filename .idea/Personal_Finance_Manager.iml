@@ -55,6 +55,7 @@
     <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.3.6, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="connection_pool (v3.0.2, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="crass (v1.0.6, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="cronex (v0.15.0, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="date (v3.5.1, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="debug (v1.11.1, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="dotenv (v3.2.0, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
@@ -120,6 +121,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rainbow (v3.1.1, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rake (v13.4.2, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rdoc (v7.2.0, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="redis-client (v0.30.0, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="regexp_parser (v2.12.0, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="reline (v0.6.3, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rexml (v3.4.4, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
@@ -133,6 +135,8 @@
     <orderEntry type="library" scope="PROVIDED" name="rubyzip (v3.3.0, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="securerandom (v0.4.1, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="selenium-webdriver (v4.44.0, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sidekiq (v8.1.6, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sidekiq-cron (v2.4.0, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="solid_cable (v3.0.12, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="solid_cache (v1.0.10, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="solid_queue (v1.4.0, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
@@ -146,6 +150,7 @@
     <orderEntry type="library" scope="PROVIDED" name="tsort (v0.2.0, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="turbo-rails (v2.0.23, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tzinfo (v2.0.6, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="unicode (v0.4.4.5, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="unicode-display_width (v3.2.0, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="unicode-emoji (v4.2.0, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="uri (v1.1.1, RVM: ruby-3.2.3 [global]) [gem]" level="application" />
