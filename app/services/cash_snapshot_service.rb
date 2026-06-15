@@ -1,5 +1,4 @@
 class CashSnapshotService
-
   def initialize(user)
     @user = user
   end
@@ -18,5 +17,4 @@ class CashSnapshotService
       Rails.logger.error "ActiveRecord error: #{e.message}"
     end
   end
-
 end

@@ -5,5 +5,4 @@ class SyncPortfolioJob < ApplicationJob
       CashSnapshotService.new(user).call
     end
   end
-
 end
