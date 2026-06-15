@@ -10,7 +10,6 @@ class EurConverter
       converted_portfolios  = convert_to_eur
       total_balance, available_cash, total_investments, profit_loss = 0, 0, 0, 0
       converted_portfolios.each do |portfolio|
-
         total_balance += portfolio[:total_balance]
         available_cash += portfolio[:available_cash]
         total_investments += portfolio[:total_investments]
@@ -23,10 +22,8 @@ class EurConverter
         total_balance: total_balance,
         available_cash: available_cash,
         total_investments: total_investments,
-        profit_loss: profit_loss,
+        profit_loss: profit_loss
       }
-
-
   end
 
   private
@@ -46,22 +43,20 @@ class EurConverter
       end
     end
     user_brokers_array
-
   end
 
   # gets currency EUR currency rate to users broker currency
   def fetch_currency(currency)
     adapter_currency = currency
-    connection = Faraday.new('https://api.frankfurter.dev') do |f|
+    connection = Faraday.new("https://api.frankfurter.dev") do |f|
       f.request :url_encoded
       f.response :json
       f.response :raise_error
     end
-    currency_endpoint = connection.get('/v2/rates')
+    currency_endpoint = connection.get("/v2/rates")
     currency_rates = currency_endpoint.body
 
     currency_rate = currency_rates.find { |c| c["quote"] == adapter_currency }["rate"]
-
   end
 
   ## converts all user's adapters into EUR
@@ -77,10 +72,5 @@ class EurConverter
         currency: "EUR"
       }
     end
-
   end
-
-
-
-
 end

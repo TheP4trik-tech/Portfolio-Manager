@@ -6,20 +6,20 @@ class EtoroAdapter
 
   def call
     ## Creating api connection
-    conn = Faraday.new('https://public-api.etoro.com') do |f|
-    f.headers['x-request-id'] = SecureRandom.uuid
-    f.headers['x-api-key'] = @credentials.api_id
-    f.headers['x-user-key'] = @credentials.api_key
+    conn = Faraday.new("https://public-api.etoro.com") do |f|
+    f.headers["x-request-id"] = SecureRandom.uuid
+    f.headers["x-api-key"] = @credentials.api_id
+    f.headers["x-user-key"] = @credentials.api_key
     f.request :url_encoded
     f.response :json
     f.response :raise_error
     end
 
     ## Getting response
-    response = conn.get('/api/v1/trading/info/real/pnl')
+    response = conn.get("/api/v1/trading/info/real/pnl")
     equity_summary = response.body["clientPortfolio"]
 
-    #return hash for eur_converter service
+    # return hash for eur_converter service
     {
       total_balance: equity_summary["credit"],
       available_cash: calculate_available_cash(equity_summary),
@@ -27,7 +27,6 @@ class EtoroAdapter
       profit_loss: equity_summary["unrealizedPnL"],
       currency: "USD"
     }
-
   end
 
   # calculate available cash
@@ -37,9 +36,6 @@ class EtoroAdapter
     orders = calculate_orders(equity_summary)
 
     available_cash = credit - (orders[:orders_for_open_total] + orders[:orders_total])
-
-
-
   end
 
   # calculate total investments
@@ -55,7 +51,6 @@ class EtoroAdapter
       (mirrors[:available_cash] - mirrors[:closed_profit]) +
       orders[:orders_for_open_total] + orders[:orders_total] +
       orders[:orders_for_open_external_cost_total]
-
   end
 
 
@@ -118,8 +113,5 @@ class EtoroAdapter
       orders_for_open_total: orders_for_open_total,
       orders_for_open_external_cost_total: orders_for_open_external_cost_total
     }
-
   end
-
-
 end
