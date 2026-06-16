@@ -10,6 +10,7 @@ gem "sqlite3", ">= 2.1"
 gem "puma", ">= 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
+## CSS Framework
 ## Rubymine native code-formatter
 gem "rubocop", "~> 1.87"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
@@ -73,3 +74,5 @@ group :test do
 end
 
 gem "devise", "~> 5.0"
+
+gem "tailwindcss-rails", "~> 4.5"

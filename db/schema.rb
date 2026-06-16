@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_13_125829) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_16_122609) do
   create_table "api_credentials", force: :cascade do |t|
     t.string "api_id"
     t.string "api_key"
@@ -36,10 +36,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_13_125829) do
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "email"
+    t.string "encrypted_password", default: "", null: false
     t.string "name"
     t.string "password"
+    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at"
+    t.string "reset_password_token"
     t.string "surname"
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "api_credentials", "users"
