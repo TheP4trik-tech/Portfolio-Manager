@@ -1,5 +1,5 @@
 class SyncPortfolioJob < ApplicationJob
-  ## periodic(15 min) job to sync portfolioSyncPortfolioJob.perform_now
+  ## periodic(15 min) job to sync portfolioSyncPortfolioJob.perform_n
   def perform
     User.all.each do |user|
       CashSnapshotService.new(user).call
