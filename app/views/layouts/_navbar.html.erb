@@ -1,0 +1,12 @@
+<nav class="navbar bg-slate-900 border-b border-slate-800 px-6 py-4">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <a href="/" class="text-white font-bold text-lg tracking-tight">Personal Finance</a>
+
+    <div class="flex items-center gap-6">
+      <%= link_to "Dashboard", root_path, class: "text-slate-400 hover:text-white text-sm transition" %>
+      <%= link_to "API Credentials", "#", class: "text-slate-400 hover:text-white text-sm transition" %>
+      <%= link_to "Profile", "#", class: "text-slate-400 hover:text-white text-sm transition" %>
+      <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "text-slate-400 hover:text-red-400 text-sm transition" %>
+    </div>
+  </div>
+</nav>
