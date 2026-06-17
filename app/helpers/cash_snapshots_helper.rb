@@ -1,0 +1,2 @@
+module CashSnapshotsHelper
+end
