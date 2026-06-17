@@ -75,5 +75,6 @@ end
 
 gem "devise", "~> 5.0"
 gem "net-imap", "~> 0.5.15"
+gem 'apexcharts', '~> 0.1.10'
 
 gem "tailwindcss-rails", "~> 4.5"
