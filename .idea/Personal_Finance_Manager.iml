@@ -90,7 +90,7 @@
     <orderEntry type="library" scope="PROVIDED" name="minitest (v6.0.6, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="msgpack (v1.8.1, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="net-http (v0.9.1, RVM: ruby-3.3.11) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="net-imap (v0.6.4, RVM: ruby-3.3.11) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="net-imap (v0.5.15, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="net-pop (v0.1.2, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="net-protocol (v0.2.2, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="net-scp (v4.1.0, RVM: ruby-3.3.11) [gem]" level="application" />

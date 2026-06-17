@@ -1,5 +1,6 @@
 class SyncPortfolioJob < ApplicationJob
-  ## periodic(15 min) job to sync portfolioSyncPortfolioJob.perform_n
+  queue_as :default
+  ## periodic(15 min) job to sync users CashSnapshots
   def perform
     User.all.each do |user|
       CashSnapshotService.new(user).call

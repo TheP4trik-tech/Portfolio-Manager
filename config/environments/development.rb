@@ -7,6 +7,11 @@ Rails.application.configure do
   config.enable_reloading = true
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
 
+  ## Jobs uses solid queue, by default they would be lost as they are stored in RAM
+  config.active_job.queue_adapter = :solid_queue
+  config.solid_queue.connects_to = { database: { writing: :queue } }
+
+
   # Do not eager load code on boot.
   config.eager_load = false
 
@@ -31,9 +36,7 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
-  ## Jobs uses solid queue, by default they would be lost as they are stored in RAM
-  config.active_job.queue_adapter = :solid_queue
-  config.solid_queue.connects_to = { database: { writing: :queue } }
+
 
 
   # Don't care if the mailer can't send.
