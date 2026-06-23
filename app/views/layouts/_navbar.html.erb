@@ -1,12 +1,19 @@
-<nav class="navbar bg-slate-900 border-b border-slate-800 px-6 py-4">
-  <div class="max-w-7xl mx-auto flex items-center justify-between">
-    <a href="/" class="text-white font-bold text-lg tracking-tight">Personal Finance</a>
+<nav class="bg-slate-950 border-b border-slate-800/50 backdrop-blur-sm sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-8 py-4 flex items-center justify-between">
 
-    <div class="flex items-center gap-6">
-      <%= link_to "Dashboard", root_path, class: "text-slate-400 hover:text-white text-sm transition" %>
-      <%= link_to "API Credentials", "#", class: "text-slate-400 hover:text-white text-sm transition" %>
-      <%= link_to "Profile", "#", class: "text-slate-400 hover:text-white text-sm transition" %>
-      <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "text-slate-400 hover:text-red-400 text-sm transition" %>
+    <a href="/" class="flex items-center gap-2">
+      <div class="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center">
+        <span class="text-white font-bold text-sm">PF</span>
+      </div>
+      <span class="text-white font-semibold text-lg tracking-tight">Personal Finance</span>
+    </a>
+
+    <div class="flex items-center gap-1">
+      <%= link_to "Dashboard", root_path, class: "text-slate-400 hover:text-white hover:bg-slate-800 px-4 py-2 rounded-lg text-sm font-medium transition-all" %>
+      <%= link_to "API Credentials", "#", class: "text-slate-400 hover:text-white hover:bg-slate-800 px-4 py-2 rounded-lg text-sm font-medium transition-all" %>
+      <%= link_to "Profile", "#", class: "text-slate-400 hover:text-white hover:bg-slate-800 px-4 py-2 rounded-lg text-sm font-medium transition-all" %>
     </div>
+
+    <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "bg-slate-800 hover:bg-red-900/50 border border-slate-700 hover:border-red-800 text-slate-300 hover:text-red-300 px-4 py-2 rounded-lg text-sm font-medium transition-all" %>
   </div>
 </nav>
