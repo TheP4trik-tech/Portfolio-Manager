@@ -1,24 +1,16 @@
-<div class="min-h-screen bg-slate-950 p-8">
-  <div class="max-w-5xl mx-auto">
-    <h1 class="text-white text-2xl font-bold mb-6">Dashboard</h1>
+<div data-controller="chart"
+     data-chart-snapshots-value="<%= @snapshots.to_json %>"
+     data-chart-snapshots-day-value="<%= @day_data.to_json %>"
+     data-chart-snapshots-week-value="<%= @week_data.to_json %>"
+     data-chart-snapshots-month-value="<%= @month_data.to_json %>"
+     data-chart-snapshots-year-value="<%= @year_data.to_json %>"
+     class="w-full max-w-4xl mx-auto bg-black border border-[#2B2B43] rounded-2xl p-8 font-sans">
 
-    <div class="bg-slate-900 rounded-2xl p-6 border border-slate-800">
-
-      <div class="flex justify-start mb-6">
-        <div class="join bg-slate-950 border border-slate-800">
-          <button data-action="click->chart#filterWeek" class="btn btn-sm join-item btn-active border-none bg-slate-800 text-white hover:bg-slate-700">1W</button>
-          <button data-action="click->chart#filterMonth" class="btn btn-sm join-item btn-ghost text-slate-400 hover:text-white hover:bg-slate-800">1M</button>
-          <button data-action="click->chart#filterThreeMonth" class="btn btn-sm join-item btn-ghost text-slate-400 hover:text-white hover:bg-slate-800">3M</button>
-          <button data-action="click->chart#filterYear" class="btn btn-sm join-item btn-ghost text-slate-400 hover:text-white hover:bg-slate-800">1Y</button>
-          <button data-action="click->chart#filterAll" class="btn btn-sm join-item btn-ghost text-slate-400 hover:text-white hover:bg-slate-800">ALL</button>
-        </div>
-      </div>
-
-      <div data-controller="chart" id="container"
-           data-chart-snapshots-value="<%= @snapshots.to_json %>"
-           class="w-full h-96">
-      </div>
-
-    </div>
+  <div class="flex justify-between items-center mb-8">
+    <h2 class="text-white text-4xl font-bold tracking-tight">Area-Series Chart</h2>
   </div>
+
+  <div id="buttonsContainer" class="flex gap-4 mb-8 pl-2"></div>
+
+  <div id="chartContainer" class="w-full h-[400px]"></div>
 </div>
