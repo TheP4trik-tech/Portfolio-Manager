@@ -12,7 +12,7 @@ gem "puma", ">= 5.0"
 gem "importmap-rails"
 ## CSS Framework
 ## Rubymine native code-formatter
-gem "rubocop", "~> 1.87"
+gem "rubocop", "~> 1.88"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
