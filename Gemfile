@@ -74,7 +74,7 @@ group :test do
 end
 
 gem "devise", "~> 5.0"
-gem "net-imap", "~> 0.5.15"
+gem "net-imap", "~> 0.6.4"
 gem "apexcharts", "~> 0.1.10"
 
 gem "tailwindcss-rails", "~> 4.5"
