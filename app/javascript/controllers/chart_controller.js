@@ -36,18 +36,8 @@ export default class extends Controller {
             },
         }
 
-        const data = JSON.parse(this.element.dataset.chartSnapshotsValue)
-        const dayData = JSON.parse(this.element.dataset.chartSnapshotsDayValue)
-        const weekData = JSON.parse(this.element.dataset.chartSnapshotsWeekValue)
-        const monthData = JSON.parse(this.element.dataset.chartSnapshotsMonthValue)
-        const yearData = JSON.parse(this.element.dataset.chartSnapshotsYearValue)
-
-        const seriesesData = new Map([
-            ['1D', dayData],
-            ['1W', weekData],
-            ['1M', monthData],
-            ['1Y', yearData],
-        ]);
+        const hourlyData = JSON.parse(this.element.dataset.chartHourlyValue || '[]');
+        const dailyData = JSON.parse(this.element.dataset.chartDailyValue || '[]');
 
         const chart = createChart(chartContainer, options);
 
@@ -68,12 +58,44 @@ export default class extends Controller {
 
         const setChartInterval = (interval) => {
             currentInterval = interval;
-            areaSeries.setData(seriesesData.get(interval));
-            chart.timeScale().fitContent();
+
+            const now = new Date();
+            const from = new Date();
+
+
+            if (interval === '1D') {
+                areaSeries.setData(hourlyData);
+                from.setHours(now.getHours() - 24);
+
+            } else if (interval === '1W') {
+                areaSeries.setData(hourlyData);
+                from.setDate(now.getDate() - 7);
+
+            } else if (interval === '1M') {
+                areaSeries.setData(dailyData);
+                from.setMonth(now.getMonth() - 1);
+
+            } else if (interval === '1Y') {
+                areaSeries.setData(dailyData);
+                from.setFullYear(now.getFullYear() - 1);
+
+            } else if (interval === 'ALL') {
+                areaSeries.setData(dailyData);
+                chart.timeScale().fitContent();
+                renderButtons();
+                return;
+            }
+
+            chart.timeScale().setVisibleRange({
+                from: from.getTime() / 1000,
+                to: now.getTime() / 1000
+            });
+
             renderButtons();
         }
 
-        const intervals = ['1D', '1W', '1M', '1Y'];
+
+        const intervals = ['1D', '1W', '1M', '1Y', 'ALL'];
 
         const renderButtons = () => {
             buttonsContainer.innerHTML = '';
