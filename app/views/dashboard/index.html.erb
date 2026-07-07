@@ -1,13 +1,22 @@
 <div data-controller="chart"
      data-chart-hourly-value="<%= @hourly_data.to_json %>"
      data-chart-daily-value="<%= @daily_history.to_json %>"
-     data-chart-snapshots-week-value="<%= @week_data.to_json %>"
-     data-chart-snapshots-month-value="<%= @month_data.to_json %>"
-     data-chart-snapshots-year-value="<%= @year_data.to_json %>"
      class="w-full max-w-4xl mx-auto bg-black border border-[#2B2B43] rounded-2xl p-8 font-sans">
 
-  <div class="flex justify-between items-center mb-8">
-    <h2 class="text-white text-4xl font-bold tracking-tight">Area-Series Chart</h2>
+  <div class="flex justify-between items-start mb-8">
+    <div>
+      <h2 class="text-white text-4xl font-bold tracking-tight">Area-Series Chart</h2>
+      <p class="text-[#A3A6AF] text-sm mt-1 font-medium">Vývoj hodnoty portfolia</p>
+    </div>
+
+    <div class="text-right">
+      <div id="returnValue" class="text-3xl font-extrabold text-[#00E396] tracking-tight transition-all duration-200">
+        -
+      </div>
+      <div id="returnPercentage" class="text-sm font-semibold text-[#00E396] mt-0.5 inline-flex items-center px-2 py-0.5 rounded bg-[#00E396]/10">
+        -
+      </div>
+    </div>
   </div>
 
   <div id="buttonsContainer" class="flex gap-4 mb-8 pl-2"></div>
