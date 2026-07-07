@@ -13,10 +13,9 @@ production:
   portfolio_sync:
     class: SyncPortfolioJob
     schedule: every 1 hour
-    args: []
+
 
 development:
   portfolio_sync:
     class: SyncPortfolioJob
     schedule: every 1 hour
-    args: []

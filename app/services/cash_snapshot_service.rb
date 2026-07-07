@@ -29,6 +29,5 @@ class CashSnapshotService
           retry
         end
       end
-
       end
-    end
+end

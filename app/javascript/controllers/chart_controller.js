@@ -39,6 +39,8 @@ export default class extends Controller {
         const hourlyData = JSON.parse(this.element.dataset.chartHourlyValue || '[]');
         const dailyData = JSON.parse(this.element.dataset.chartDailyValue || '[]');
 
+
+
         const chart = createChart(chartContainer, options);
 
         const areaSeries = chart.addSeries(AreaSeries, {
@@ -55,6 +57,32 @@ export default class extends Controller {
         });
 
         let currentInterval = '1M';
+        const setReturnValues = (data, from) => {
+            const returnValueLabel = document.getElementById('returnValue');
+            const returnPercentageLabel = document.getElementById('returnPercentage');
+
+            const time_from = from / 1000;
+
+            const chartData = data.filter(item => item.time >= time_from)
+
+            if (chartData.length === 0) {
+                returnValueLabel.textContent = "0.00 EUR";
+                returnPercentageLabel.textContent = "0.00 %";
+                return;
+            }
+            const firstValue = chartData[0]
+            const lastValue = chartData[chartData.length - 1]
+
+            const returnDifference = lastValue.profit_loss - firstValue.profit_loss;
+            const returnPercentage = (returnDifference / firstValue.value) * 100;
+
+
+            returnValueLabel.textContent = `${returnDifference > 0 ? "+" : ""}${returnDifference.toFixed(2)} EUR`;
+            returnPercentageLabel.textContent = `${returnPercentage.toFixed(2)}%`;
+
+
+
+        }
 
         const setChartInterval = (interval) => {
             currentInterval = interval;
@@ -62,25 +90,34 @@ export default class extends Controller {
             const now = new Date();
             const from = new Date();
 
+            let activeData;
 
             if (interval === '1D') {
                 areaSeries.setData(hourlyData);
                 from.setHours(now.getHours() - 24);
+                activeData = hourlyData;
+
 
             } else if (interval === '1W') {
                 areaSeries.setData(hourlyData);
                 from.setDate(now.getDate() - 7);
+                activeData = hourlyData;
 
             } else if (interval === '1M') {
                 areaSeries.setData(dailyData);
                 from.setMonth(now.getMonth() - 1);
+                activeData = dailyData;
 
             } else if (interval === '1Y') {
                 areaSeries.setData(dailyData);
                 from.setFullYear(now.getFullYear() - 1);
+                activeData = dailyData;
 
             } else if (interval === 'ALL') {
                 areaSeries.setData(dailyData);
+                activeData = dailyData;
+                const firstTime = activeData.length > 0 ? activeData[0].time * 1000 : now.getTime();
+                setReturnValues(activeData, firstTime);
                 chart.timeScale().fitContent();
                 renderButtons();
                 return;
@@ -90,7 +127,7 @@ export default class extends Controller {
                 from: from.getTime() / 1000,
                 to: now.getTime() / 1000
             });
-
+            setReturnValues(activeData, from.getTime());
             renderButtons();
         }
 
