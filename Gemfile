@@ -22,7 +22,6 @@ gem "jbuilder"
 # Use for HTTP requests, API calls.
 gem "faraday"
 gem "dotenv", groups: [ :development, :test ]
-
 gem "nokogiri", ">= 1.19.4"
 
 
