@@ -54,7 +54,7 @@ class EurConverter
       f.response :raise_error
       f.options.timeout =  10
       f.options.open_timeout = 10 ## 10 sec timeout for connection
-      f.request :retry, max: 3, exceptions: [Faraday::ConnectionFailed, Faraday::TimeoutError]
+      f.request :retry, max: 3, exceptions: [ Faraday::ConnectionFailed, Faraday::TimeoutError ]
       ## retrying on only meaningful errors
     end
     currency_endpoint = connection.get("/v2/rates")
