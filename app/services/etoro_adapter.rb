@@ -7,12 +7,16 @@ class EtoroAdapter
   def call
     ## Creating api connection
     conn = Faraday.new("https://public-api.etoro.com") do |f|
-    f.headers["x-request-id"] = SecureRandom.uuid
+    f.headers["x-request-id"] = SecureRandom.uuid ## Needed to make Etoro request
     f.headers["x-api-key"] = @credentials.api_id
     f.headers["x-user-key"] = @credentials.api_key
     f.request :url_encoded
     f.response :json
     f.response :raise_error
+    f.options.timeout =  10
+    f.options.open_timeout = 10 ## 10 sec timeout for connection
+    f.request :retry, max: 3, exceptions: [Faraday::ConnectionFailed, Faraday::TimeoutError]
+    ## retrying on only meaningful errors
     end
 
     ## Getting response

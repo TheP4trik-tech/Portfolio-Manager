@@ -39,7 +39,7 @@ class EurConverter
         adapter = Trading212Adapter.new(@user)
         user_brokers_array << adapter
       else
-        raise "Broker not supported or wrong credentials"
+        Rails.logger.warn "Unsupported broker: #{broker}"
       end
     end
     user_brokers_array
@@ -52,6 +52,10 @@ class EurConverter
       f.request :url_encoded
       f.response :json
       f.response :raise_error
+      f.options.timeout =  10
+      f.options.open_timeout = 10 ## 10 sec timeout for connection
+      f.request :retry, max: 3, exceptions: [Faraday::ConnectionFailed, Faraday::TimeoutError]
+      ## retrying on only meaningful errors
     end
     currency_endpoint = connection.get("/v2/rates")
     currency_rates = currency_endpoint.body

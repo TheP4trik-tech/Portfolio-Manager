@@ -6,9 +6,12 @@ class Trading212Adapter
   def call
     conn = Faraday.new("https://live.trading212.com") do |f|
       f.request :authorization, "Basic", Base64.strict_encode64("#{@credentials.api_id}:#{@credentials.api_key}")
+      ## Trading212 requires Base64 for each connection
       f.request :url_encoded
       f.response :json
       f.response :raise_error
+      f.options.timeout =  10
+      f.options.open_timeout = 10 ## 10 sec timeout for connection
     end
     response =  conn.get("/api/v0/equity/account/summary")
     equity_summary = response.body
