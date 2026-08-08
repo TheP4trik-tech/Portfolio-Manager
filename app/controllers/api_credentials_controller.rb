@@ -1,6 +1,6 @@
 class ApiCredentialsController < ApplicationController
   def new
-    user = current_user
+    @api_credential = ApiCredential.new
   end
   def index
     user = current_user

@@ -41,6 +41,7 @@ export default class extends Controller {
 
 
 
+
         const chart = createChart(chartContainer, options);
 
         const areaSeries = chart.addSeries(AreaSeries, {
@@ -76,9 +77,13 @@ export default class extends Controller {
             const returnDifference = lastValue.profit_loss - firstValue.profit_loss;
             const returnPercentage = (returnDifference / firstValue.value) * 100;
 
+            const isPositive = returnDifference > 0
 
-            returnValueLabel.textContent = `${returnDifference > 0 ? "+" : ""}${returnDifference.toFixed(2)} EUR`;
-            returnPercentageLabel.textContent = `${returnPercentage.toFixed(2)}%`;
+            returnValueLabel.textContent = `${isPositive ? "+" : ""}${returnDifference.toFixed(2)} EUR`
+            returnValueLabel.style.color = isPositive ? '#00E396' : '#FF4560'
+
+            returnPercentageLabel.textContent = `${returnPercentage.toFixed(2)}%`
+            returnPercentageLabel.style.color = isPositive ? '#00E396' : '#FF4560'
 
 
 

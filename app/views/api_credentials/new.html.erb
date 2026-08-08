@@ -1,0 +1,27 @@
+<div class="min-h-screen bg-slate-950 p-8">
+  <div class="max-w-2xl mx-auto">
+    <h1 class="text-white text-2xl font-bold mb-8">API Credentials</h1>
+    <%= form_with model: @api_credential, method: :post do |f| %>
+    <div class="bg-slate-900 rounded-2xl p-8 border border-slate-800">
+      <div class="mb-6">
+        <label class="block text-sm font-medium text-slate-300 mb-2">Provider</label>
+        <%= f.select(:provider, ["E-toro", "Trading 212", "ETC"]) %>
+      </div>
+
+      <div class="mb-6">
+        <label class="block text-sm font-medium text-slate-300 mb-2">API ID</label>
+        <input type="text" class="w-full bg-slate-800 border border-slate-700 text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 transition" placeholder="Váš API ID">
+      </div>
+
+      <div class="mb-8">
+        <label class="block text-sm font-medium text-slate-300 mb-2">API Key</label>
+        <input type="password" class="w-full bg-slate-800 border border-slate-700 text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 transition" placeholder="Váš API Key">
+      </div>
+
+      <button class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-lg text-sm transition cursor-pointer">
+        Uložit credentials
+      </button>
+    </div>
+     <% end %>
+  </div>
+</div>
