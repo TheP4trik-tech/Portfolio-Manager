@@ -25,6 +25,7 @@
         <div>
           <%= f.label :api_key, "API Key", class: "block text-sm font-medium text-slate-300 mb-2" %>
           <%= f.password_field :api_key, class: "w-full bg-slate-800 border border-slate-700 text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 transition" %>
+          <a data-action="click->password-toggle#password"></a>
         </div>
 
         <div class="pt-2">
