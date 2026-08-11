@@ -1,0 +1,38 @@
+<%= turbo_frame_tag @api_credential do %>
+<div class="min-h-screen bg-slate-950 p-8">
+  <div class="max-w-2xl mx-auto">
+
+    <div class="mb-6">
+      <%= link_to "Back", api_credentials_path, class: "text-slate-400 hover:text-white text-sm transition" %>
+    </div>
+
+    <div class="bg-slate-900 border border-slate-800/50 rounded-2xl p-8">
+      <h1 class="text-white text-xl font-semibold mb-6">Edit Credential</h1>
+
+      <%= form_with model: @api_credential, class: "space-y-5" do |f| %>
+
+        <div>
+          <%= f.label :provider, class: "block text-sm font-medium text-slate-300 mb-2" %>
+          <%= f.select :provider, [["Trading 212", "trading212"], ["eToro", "etoro"]], {},
+                       class: "w-full bg-slate-800 border border-slate-700 text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 transition" %>
+        </div>
+
+        <div>
+          <%= f.label :api_id, "API ID", class: "block text-sm font-medium text-slate-300 mb-2" %>
+          <%= f.text_field :api_id, class: "w-full bg-slate-800 border border-slate-700 text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 transition" %>
+        </div>
+
+        <div>
+          <%= f.label :api_key, "API Key", class: "block text-sm font-medium text-slate-300 mb-2" %>
+          <%= f.password_field :api_key, class: "w-full bg-slate-800 border border-slate-700 text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 transition" %>
+        </div>
+
+        <div class="pt-2">
+          <%= f.submit "Save changes", data: { turbo_frame: "_top" }, class: "w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-lg text-sm transition cursor-pointer" %>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>
