@@ -12,7 +12,7 @@ class ApiCredentialsController < ApplicationController
   def update
     @api_credential = ApiCredential.find(params[:id])
     if @api_credential.update(permitted_params)
-      redirect_to api_credentials_path, alert: "Api credential updated"
+      redirect_to api_credentials_path, notice: "Api credential updated."
     else
       render edit_api_credential_path, alert: "Api credential update failed"
     end
