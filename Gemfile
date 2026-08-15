@@ -22,8 +22,13 @@ gem "jbuilder"
 # Use for HTTP requests, API calls.
 gem "faraday"
 gem "faraday-retry"
+
 gem "dotenv", groups: [ :development, :test ]
+
 gem "nokogiri", ">= 1.19.4"
+
+# Google Oauth2 gem for google account connection
+gem "omniauth-google-oauth2"
 
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
