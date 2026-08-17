@@ -118,6 +118,7 @@
     <orderEntry type="library" scope="PROVIDED" name="omniauth (v2.1.4, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="omniauth-google-oauth2 (v1.2.2, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="omniauth-oauth2 (v1.9.0, RVM: ruby-3.3.11) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="omniauth-rails_csrf_protection (v2.0.1, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.5.0, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ostruct (v0.6.3, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parallel (v2.1.0, RVM: ruby-3.3.11) [gem]" level="application" />
