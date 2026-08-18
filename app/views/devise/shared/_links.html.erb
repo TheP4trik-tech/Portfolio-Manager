@@ -1,18 +1,15 @@
-<%- if controller_name != 'sessions' %>
-  <p><%= link_to "Log in", new_session_path(resource_name) %></p>
-<% end %>
+
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <p><%= link_to "Sign up", new_registration_path(resource_name) %></p>
+  <%= link_to "Sign up", new_registration_path(resource_name), class: "block w-full text-center bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white text-sm font-medium px-4 py-3 rounded-lg transition-all mt-3" %>
 <% end %>
 
-<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <p><%= link_to "Forgot your password?", new_password_path(resource_name) %></p>
-<% end %>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
   <p><%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %></p>
 <% end %>
+
+
 
 <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
   <p><%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %></p>
@@ -20,6 +17,15 @@
 
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <p><%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false } %></p>
+    <%= button_to omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: "flex items-center gap-2 w-full justify-center bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white text-sm font-medium px-4 mt-2 mb-2 py-3 rounded-lg transition-all cursor-pointer" do %>
+      <%= image_tag "google_icon.png", alt: "Google", class: "w-5 h-5 object-contain flex-shrink-0" %>
+      <span>Sign in with Google</span>
+    <% end %>
   <% end %>
+<% end %>
+<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <p><%= link_to "Forgot your password?", new_password_path(resource_name) %></p>
+<% end %>
+<%- if controller_name != 'sessions' %>
+  <p><%= link_to "Log in", new_session_path(resource_name) %></p>
 <% end %>
