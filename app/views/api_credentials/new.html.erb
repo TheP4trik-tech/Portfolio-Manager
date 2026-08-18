@@ -1,29 +1,28 @@
-<%= turbo_frame_tag @api_credential do  %>
-<div class="min-h-screen bg-slate-950 p-8">
-  <div class="max-w-2xl mx-auto">
-    <h1 class="text-white text-2xl font-bold mb-8">API Credentials</h1>
-    <%= form_with model: @api_credential, method: :post do |f| %>
-    <div class="bg-slate-900 rounded-2xl p-8 border border-slate-800">
-      <div class="mb-6">
-        <label class="block text-sm font-medium text-slate-300 mb-2">Provider</label>
-        <%= f.select(:provider, ["E-toro", "Trading 212", "ETC"]) %>
+<%= turbo_frame_tag @api_credential do %>
+  <div class="bg-slate-900 border border-slate-800/50 rounded-2xl p-6 mt-4 max-w-sm">
+    <h2 class="text-white text-xs font-semibold tracking-widest uppercase mb-5">New Credential</h2>
+
+    <%= form_with model: @api_credential do |f| %>
+
+      <div class="mb-4">
+        <%= f.label :provider, class: "block text-xs font-semibold tracking-widest uppercase text-slate-400 mb-2" %>
+        <%= f.select :provider, [["Trading 212", "trading212"], ["eToro", "etoro"]], {},
+                     class: "select select-sm select-bordered w-full bg-slate-800 border-slate-700 text-white" %>     </div>
+
+      <div class="mb-4">
+        <%= f.label :api_id, "API ID", class: "block text-xs font-semibold tracking-widest uppercase text-slate-400 mb-2" %>
+        <%= f.text_field :api_id, placeholder: "Your API ID",
+                         class: "w-full bg-slate-800 border border-slate-700 text-white rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-indigo-500 transition placeholder-slate-600" %>
       </div>
 
-      <div class="mb-6">
-        <label class="block text-sm font-medium text-slate-300 mb-2">API ID</label>
-        <input type="text" class="w-full bg-slate-800 border border-slate-700 text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 transition" placeholder="Váš API ID">
+      <div class="mb-5">
+        <%= f.label :api_key, "API Key", class: "block text-xs font-semibold tracking-widest uppercase text-slate-400 mb-2" %>
+        <%= f.password_field :api_key, placeholder: "Your API Key",
+                             class: "w-full bg-slate-800 border border-slate-700 text-white rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-indigo-500 transition placeholder-slate-600" %>
       </div>
 
-      <div class="mb-8">
-        <label class="block text-sm font-medium text-slate-300 mb-2">API Key</label>
-        <input type="password" class="w-full bg-slate-800 border border-slate-700 text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-indigo-500 transition" placeholder="Váš API Key">
-      </div>
+      <%= f.submit "Save", class: "bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white text-xs font-semibold tracking-widest uppercase px-5 py-2 rounded-lg transition cursor-pointer" %>
 
-      <button class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-lg text-sm transition cursor-pointer">
-        Save credentials
-      </button>
-    </div>
-     <% end %>
+    <% end %>
   </div>
-</div>
 <% end %>
