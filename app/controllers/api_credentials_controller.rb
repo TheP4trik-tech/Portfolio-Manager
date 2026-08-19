@@ -22,6 +22,17 @@ class ApiCredentialsController < ApplicationController
     end
   end
 
+  def create
+    user = current_user
+    @api_credential = ApiCredential.new(permitted_params)
+    @api_credential.user = user
+    if @api_credential.save
+      redirect_to api_credentials_path, notice: "Api credential created."
+    else
+      render new_api_credential_path, alert: "Api credential creation failed"
+    end
+  end
+
   private
   def permitted_params
     params.require(:api_credential).permit(:api_key, :api_id, :provider)
