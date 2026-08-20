@@ -7,9 +7,14 @@
                    class: "select select-ghost select-sm bg-slate-900 text-white text-xs font-semibold tracking-widest focus:outline-none focus:border-indigo-400 transition w-36" %>
       <%= f.text_field :api_id, placeholder: "API ID",
                        class: "bg-slate-900 border border-slate-800 text-white rounded-lg px-3 py-2 text-xs tracking-widest focus:outline-none focus:border-indigo-400 transition flex-1 placeholder-slate-600" %>
-
-      <%= f.password_field :api_key, placeholder: "API Key",
-                           class: "bg-slate-900 border border-slate-800 text-white rounded-lg px-3 py-2 text-xs tracking-widest focus:outline-none focus:border-indigo-400 transition flex-1 placeholder-slate-600" %>
+      <div data-controller="password-visibility" class="relative flex-1">
+        <%= f.password_field :api_key, placeholder: "API Key",
+                             class: "bg-slate-900 border border-slate-800 text-white rounded-lg px-3 py-2 text-xs tracking-widest focus:outline-none focus:border-indigo-400 transition flex-1 placeholder-slate-600",data: {"password-visibility-target": "input"}, spellcheck: false  %>
+        <button type="button" data-action="password-visibility#toggle" class="absolute right-2 top-1/2 -translate-y-1/2">
+          <span data-password-visibility-target="icon"><%= image_tag "eye_icon.png", class: "w-4 h-4", alt: "Eye" %></span>
+          <span data-password-visibility-target="icon" class="hidden">Eye Slash</span>
+        </button>
+      </div>
 
       <%= f.submit "Save", class: "text-white text-xs font-semibold tracking-widest uppercase px-4 py-2 rounded-lg transition cursor-pointer bg-slate-800 hover:bg-slate-700 border border-slate-700 flex-shrink-0" %>
 
