@@ -9,7 +9,6 @@ class ApiCredentialsController < ApplicationController
     @api_credential = ApiCredential.new
   end
   def edit
-    user = current_user
     @api_credential = ApiCredential.find(params[:id])
   end
 
@@ -22,14 +21,13 @@ class ApiCredentialsController < ApplicationController
     end
   end
 
+  # controller
   def create
-    user = current_user
-    @api_credential = ApiCredential.new(permitted_params)
-    @api_credential.user = user
+    @api_credential = current_user.api_credentials.build(permitted_params)
     if @api_credential.save
-      redirect_to api_credentials_path, notice: "Api credential created."
-    else
-      render new_api_credential_path, alert: "Api credential creation failed"
+      respond_to do |format|
+        format.turbo_stream
+      end
     end
   end
 
