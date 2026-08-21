@@ -7,6 +7,12 @@ class ApiCredentialsController < ApplicationController
   def new
     @api_credential = ApiCredential.new
   end
+
+  def delete
+    @api_credential = ApiCredential.find(params[:id])
+    @api_credential.destroy
+    render :index, notice: "Credential deleted"
+  end
   def edit
     @api_credential = ApiCredential.find(params[:id])
   end
