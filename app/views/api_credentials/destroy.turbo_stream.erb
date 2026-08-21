@@ -1,0 +1,2 @@
+<%= turbo_stream.remove @api_credential %>
+<%= turbo_stream.replace "flash", partial: "layouts/flash", locals: { notice: "Credential deleted", alert: nil } %>
