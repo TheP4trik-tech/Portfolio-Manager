@@ -1,0 +1,2 @@
+<%= turbo_stream.append "api_credentials", partial: "api_credential", locals: { api_credential: @api_credential } %>
+<%= turbo_stream.replace "new_api_credential", "" %>
