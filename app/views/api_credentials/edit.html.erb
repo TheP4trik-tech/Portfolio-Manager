@@ -9,10 +9,10 @@
                        class: "bg-slate-900 border border-slate-800 text-white rounded-lg px-3 py-2 text-xs tracking-widest focus:outline-none focus:border-indigo-400 transition flex-1 placeholder-slate-600" %>
       <div data-controller="password-visibility" class="relative flex-1">
         <%= f.password_field :api_key, placeholder: "API Key",
-                             class: "bg-slate-900 border border-slate-800 text-white rounded-lg px-3 py-2 text-xs tracking-widest focus:outline-none focus:border-indigo-400 transition flex-1 placeholder-slate-600",data: {"password-visibility-target": "input"}, spellcheck: false  %>
+                             class: "w-full bg-slate-900 border border-slate-800 text-white rounded-lg px-3 py-2 text-xs tracking-widest focus:outline-none focus:border-indigo-400 transition flex-1 placeholder-slate-600",data: {"password-visibility-target": "input"}, spellcheck: false  %>
         <button type="button" data-action="password-visibility#toggle" class="absolute right-2 top-1/2 -translate-y-1/2">
-          <span data-password-visibility-target="icon"><%= image_tag "eye_icon.png", class: "w-4 h-4", alt: "Eye" %></span>
-          <span data-password-visibility-target="icon" class="hidden">Eye Slash</span>
+          <span data-password-visibility-target="icon"><%= image_tag "eye_icon.png", class: "w-5 h-5 invert", alt: "Eye" %></span>
+          <span data-password-visibility-target="icon" class="hidden"><%= image_tag "eye_slash_icon.png", class: "w-5 h-5 invert", alt: "Eye Slash" %></span>
         </button>
       </div>
 
