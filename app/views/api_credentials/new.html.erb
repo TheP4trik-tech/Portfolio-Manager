@@ -1,27 +1,27 @@
-<%= turbo_frame_tag @api_credential do %>
-  <div class="bg-slate-900 border border-slate-800/50 rounded-2xl p-6 mt-4 max-w-sm">
-    <h2 class="text-white text-xs font-semibold tracking-widest uppercase mb-5">New Credential</h2>
+<%= turbo_frame_tag "new_api_credential" do %>
+  <div class="bg-slate-950 border border-slate-800/50 rounded-xl p-5 mt-4 flex items-center gap-4">
 
-    <%= form_with model: @api_credential do |f| %>
+    <%= form_with model: @api_credential, class: "flex items-center gap-3 w-full" do |f| %>
 
-      <div class="mb-4">
-        <%= f.label :provider, class: "block text-xs font-semibold tracking-widest uppercase text-slate-400 mb-2" %>
-        <%= f.select :provider, [["Trading 212", "trading212"], ["eToro", "etoro"]], {},
-                     class: "select select-sm select-bordered w-full bg-slate-800 border-slate-700 text-white" %>     </div>
+      <%= f.select :provider, [["Trading 212", "trading212"], ["eToro", "etoro"]], {},
+                   class: "select select-ghost select-sm bg-slate-900 text-white text-xs font-semibold tracking-widest focus:outline-none focus:border-indigo-400 transition w-36" %>
 
-      <div class="mb-4">
-        <%= f.label :api_id, "API ID", class: "block text-xs font-semibold tracking-widest uppercase text-slate-400 mb-2" %>
-        <%= f.text_field :api_id, placeholder: "Your API ID",
-                         class: "w-full bg-slate-800 border border-slate-700 text-white rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-indigo-500 transition placeholder-slate-600" %>
+      <%= f.text_field :api_id, placeholder: "API ID",
+                       class: "bg-slate-900 border border-slate-800 text-white rounded-lg px-3 py-2 text-xs tracking-widest focus:outline-none focus:border-indigo-400 transition flex-1 placeholder-slate-600" %>
+
+      <div data-controller="password-visibility" class="relative flex-1">
+        <%= f.password_field :api_key, placeholder: "API Key",
+                             class: "w-full bg-slate-900 border border-slate-800 text-white rounded-lg px-3 py-2 text-xs tracking-widest focus:outline-none focus:border-indigo-400 transition placeholder-slate-600",
+                             data: { "password-visibility-target": "input" }, spellcheck: false %>
+        <button type="button" data-action="password-visibility#toggle" class="absolute right-2 top-1/2 -translate-y-1/2">
+          <span data-password-visibility-target="icon"><%= image_tag "eye_icon.png", class: "w-5 h-5 invert", alt: "Eye" %></span>
+          <span data-password-visibility-target="icon" class="hidden"><%= image_tag "eye_slash_icon.png", class: "w-5 h-5 invert", alt: "Eye Slash" %></span>
+        </button>
       </div>
 
-      <div class="mb-5">
-        <%= f.label :api_key, "API Key", class: "block text-xs font-semibold tracking-widest uppercase text-slate-400 mb-2" %>
-        <%= f.password_field :api_key, placeholder: "Your API Key",
-                             class: "w-full bg-slate-800 border border-slate-700 text-white rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-indigo-500 transition placeholder-slate-600" %>
-      </div>
+      <%= f.submit "Save", class: "text-white text-xs font-semibold tracking-widest uppercase px-4 py-2 rounded-lg transition cursor-pointer bg-slate-800 hover:bg-slate-700 border border-slate-700 flex-shrink-0" %>
 
-      <%= f.submit "Save", class: "bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white text-xs font-semibold tracking-widest uppercase px-5 py-2 rounded-lg transition cursor-pointer" %>
+      <%= link_to "Cancel", api_credentials_path, data: { turbo_frame: "_top" }, class: "text-slate-400 hover:text-white text-xs tracking-widest transition flex-shrink-0" %>
 
     <% end %>
   </div>
