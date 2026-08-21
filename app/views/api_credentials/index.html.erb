@@ -2,8 +2,10 @@
   <div class="max-w-3xl mx-auto">
     <div class="flex items-center justify-between mb-6">
       <h1 class="text-white text-2xl font-bold">API Credentials</h1>
-      <%= link_to "Add credential", new_api_credential_path, class: "bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium px-4 py-2 rounded-lg transition-all" %>
+      <%= link_to "Add credential", new_api_credential_path, data: { turbo_frame: "new_api_credential" },class: "bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium px-4 py-2 rounded-lg transition-all" %>
     </div>
+    <%= turbo_frame_tag "new_api_credential" %>
+
 
     <div class="space-y-3">
       <%= render @api_credentials %>
