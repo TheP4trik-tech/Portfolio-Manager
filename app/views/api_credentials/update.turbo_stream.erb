@@ -1,1 +1,4 @@
 <%= turbo_stream.replace "flash", partial: "layouts/flash"%>
+<% if @api_credential.errors.none? %>
+  <%= turbo_stream.replace dom_id(@api_credential), partial: "api_credential", locals: { api_credential: @api_credential } %>" %>
+<% end %>
