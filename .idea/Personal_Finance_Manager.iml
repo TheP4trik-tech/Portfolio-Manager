@@ -56,6 +56,7 @@
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.3.0, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v4.0.7, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler-audit (v0.9.3, RVM: ruby-3.3.11) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="cancancan (v3.6.1, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="capybara (v3.40.0, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.3.8, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="connection_pool (v3.0.2, RVM: ruby-3.3.11) [gem]" level="application" />

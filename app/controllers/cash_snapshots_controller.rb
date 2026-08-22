@@ -1,4 +1,5 @@
 class CashSnapshotsController < ApplicationController
+  load_and_authorize_resource
   def create
     @cash_snapshot = CashSnapshot.new(cash_snapshot_params)
     respond_to do |format|

@@ -1,4 +1,5 @@
 class ApiCredentialsController < ApplicationController
+  load_and_authorize_resource
   def index
     user = current_user
     @api_credentials = current_user.api_credentials
