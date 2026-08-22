@@ -25,7 +25,7 @@ class ApiCredentialsController < ApplicationController
     if @api_credential.update(permitted_params)
       flash[:notice] = "Api credential was successfully updated."
       respond_to do |format|
-        format.html { redirect_to api_credentials_path }
+        format.turbo_stream
       end
     else
       respond_to do |format|
