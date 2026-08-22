@@ -1,4 +1,5 @@
 class DashboardController < ApplicationController
+  load_and_authorize_resource
   def index
     raw_snapshots = current_user.cash_snapshots
                                 .order(:created_at)
