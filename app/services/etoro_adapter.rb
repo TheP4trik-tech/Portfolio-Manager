@@ -4,8 +4,12 @@ class EtoroAdapter
     @credentials = @user.api_credentials.find_by(provider: "etoro")
   end
 
+
+  ## Creating api connection
   def call
-    ## Creating api connection
+    if  @credentials.api_id.nil? || @credentials.api_key.nil?
+      raise "Etoro credentials not provided"
+    end
     conn = Faraday.new("https://public-api.etoro.com") do |f|
     f.headers["x-request-id"] = SecureRandom.uuid ## Needed to make Etoro request
     f.headers["x-api-key"] = @credentials.api_id
@@ -18,10 +22,17 @@ class EtoroAdapter
     f.request :retry, max: 3, exceptions: [ Faraday::ConnectionFailed, Faraday::TimeoutError ]
       ## retrying on only meaningful errors
     end
-
+    begin
     ## Getting response
     response = conn.get("/api/v1/trading/info/real/pnl")
     equity_summary = response.body["clientPortfolio"]
+    rescue Faraday::Error => e
+      if e.response[:status] == 401
+        return "Invalid credentials"
+      else
+        return  e.response
+      end
+      end
 
     # return hash for eur_converter service
     {
