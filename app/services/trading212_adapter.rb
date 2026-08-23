@@ -4,6 +4,9 @@ class Trading212Adapter
     @credentials = @user.api_credentials.find_by(provider: "trading212")
   end
   def call
+    if @credentials.api_id.nil? || @credentials.api_key.nil?
+      raise "Trading 212 credentials provided"
+    end
     conn = Faraday.new("https://live.trading212.com") do |f|
       f.request :authorization, "Basic", Base64.strict_encode64("#{@credentials.api_id}:#{@credentials.api_key}")
       ## Trading212 requires Base64 for each connection
@@ -13,6 +16,7 @@ class Trading212Adapter
       f.options.timeout =  10
       f.options.open_timeout = 10 ## 10 sec timeout for connection
     end
+    begin
     response =  conn.get("/api/v0/equity/account/summary")
     equity_summary = response.body
     # returning hash for eur_converter service
@@ -23,5 +27,12 @@ class Trading212Adapter
       profit_loss: equity_summary["investments"]["unrealizedProfitLoss"],
       currency: equity_summary["currency"]
     }
+    rescue Faraday::Error => e
+      if e.response[:status] == 401
+        "Invalid credentials"
+      else
+        e.response
+      end
+    end
   end
 end

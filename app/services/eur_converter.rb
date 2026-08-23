@@ -1,5 +1,4 @@
 class EurConverter
-  attr_reader :data
   def initialize(user)
    @user = user
    @users_brokers = @user.api_credentials.pluck(:provider)
@@ -15,7 +14,7 @@ class EurConverter
         total_investments += portfolio[:total_investments]
         profit_loss  += portfolio[:profit_loss]
       end
-      data =
+      @data =
       {
         user: @user,
         currency: "EUR",
@@ -67,6 +66,11 @@ class EurConverter
   def convert_to_eur
     converted_portfolios =  build_adapters.map do |adapter|
       adapter_data = adapter.call
+
+      ## if any of adapters has errors, eur_converter will not continue
+      if adapter_data.is_a?(String)
+        raise "Error occured in adapter #{adapter_data}"
+      end
       currency_rate = fetch_currency(adapter_data[:currency])
       {
         total_balance: adapter_data[:total_balance] / currency_rate,

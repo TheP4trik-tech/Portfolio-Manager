@@ -1,5 +1,5 @@
 class ApiCredentialsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource param_method: :permitted_params
   def index
     user = current_user
     @api_credentials = current_user.api_credentials
