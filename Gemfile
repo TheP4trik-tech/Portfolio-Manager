@@ -29,7 +29,7 @@ gem "nokogiri", ">= 1.19.4"
 
 # Google Oauth2 gem for google account connection
 gem "omniauth-google-oauth2"
-
+gem "omniauth"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
