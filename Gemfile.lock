@@ -526,6 +526,7 @@ DEPENDENCIES
   kamal
   net-imap (~> 0.5.15)
   nokogiri (>= 1.19.4)
+  omniauth
   omniauth-google-oauth2
   omniauth-rails_csrf_protection
   propshaft

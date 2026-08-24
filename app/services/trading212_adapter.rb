@@ -5,7 +5,7 @@ class Trading212Adapter
   end
   def call
     if @credentials.api_id.nil? || @credentials.api_key.nil?
-      raise "Trading 212 credentials provided"
+      raise "Trading 212 credentials not provided"
     end
     conn = Faraday.new("https://live.trading212.com") do |f|
       f.request :authorization, "Basic", Base64.strict_encode64("#{@credentials.api_id}:#{@credentials.api_key}")
@@ -29,7 +29,7 @@ class Trading212Adapter
     }
     rescue Faraday::Error => e
       if e.response[:status] == 401
-        "Invalid credentials"
+        "Invalid credentials in Trading212"
       else
         e.response
       end
