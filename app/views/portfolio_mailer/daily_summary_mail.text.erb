@@ -1,0 +1,10 @@
+Hello <%= @user.first_name%>, we are sending you your daily portfolio summary.
+<% if @last_snapshot.present? && @latest_snapshot.present? %>
+  Total portfolio value changed by <%= number_to_currency(( @latest_snapshot.total_balance - @last_snapshot.total_balance ), unit: "€", precision: 2) %>
+  Total profit change by <%= number_to_currency((@latest_snapshot.profit_loss - @last_snapshot.profit_loss ), unit: "€", precision: 2) %>,
+  current total P&L: <%= number_to_currency(@last_snapshot.profit_loss, unit: "€", precision: 2)%>
+  current total balance: <%= number_to_currency(@last_snapshot.total_balance, unit: "€", precision: 2)%>
+  "Open portfolio" <%= @url %>
+<% else %>
+  No data available
+<% end %>
