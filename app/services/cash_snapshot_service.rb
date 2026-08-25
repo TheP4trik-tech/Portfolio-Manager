@@ -19,6 +19,7 @@ class CashSnapshotService
       currency: data[:currency]
     )
   rescue => e
+
     Rails.logger.error "Error in CashSnapshotService for user #{@user.id}: #{e.message}"
   end
 end

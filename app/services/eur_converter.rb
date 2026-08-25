@@ -66,9 +66,16 @@ class EurConverter
     converted_portfolios =  build_adapters.map do |adapter|
       adapter_data = adapter.call
 
-      ## if any of adapters has errors, eur_converter will not continue
+      ## if any of adapters has errors, eur_converter will not continue and set error_sent to true
+      # which will sent user Email about his error
       if adapter_data.is_a?(String)
-        raise "Error occured in #{adapter.class.name}: #{adapter_data}"
+        provider = ADAPTERS.invert[adapter.class]
+        failed_credential = @user.api_credentials.find_by(provider: provider)
+        if failed_credential && !failed_credential.error_sent?
+          failed_credential.update(error_sent: true)
+          PortfolioMailer.with(user: @user, provider: provider).error_mail.deliver_later
+        end
+        raise "Error occured in #{provider}: #{adapter_data}"
       end
       currency_rate = fetch_currency(adapter_data[:currency])
       {
