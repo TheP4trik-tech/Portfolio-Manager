@@ -1,8 +1,12 @@
 class EurConverter
   def initialize(user)
    @user = user
-   @users_brokers = @user.api_credentials.pluck(:provider)
   end
+
+  ADAPTERS =  {
+    "etoro" => EtoroAdapter,
+    "trading212" => Trading212Adapter
+  }
 
   # Makes sum of all eur converted data from brokers, returning hash for CashSnapshot service
   def call
@@ -28,20 +32,15 @@ class EurConverter
   private
   # Builds users broker adapters
   def build_adapters
-    user_brokers_array = Array.new
-    @users_brokers.each do |broker|
-      case broker
-      when "etoro"
-        adapter = EtoroAdapter.new(@user)
-        user_brokers_array << adapter
-      when "trading212"
-        adapter = Trading212Adapter.new(@user)
-        user_brokers_array << adapter
-      else
-        Rails.logger.warn "Unsupported broker: #{broker}"
+      adapters = []
+      @user.api_credentials.pluck(:provider).each do |provider|
+        if ADAPTERS[provider]
+          adapters << ADAPTERS[provider].new(@user)
+        else
+          Rails.logger.error "Unknown broker #{provider}, please choose only supported brokers"
+        end
       end
-    end
-    user_brokers_array
+      adapters
   end
 
   # gets currency EUR currency rate to users broker currency
@@ -69,7 +68,7 @@ class EurConverter
 
       ## if any of adapters has errors, eur_converter will not continue
       if adapter_data.is_a?(String)
-        raise "Error occured in adapter #{adapter_data}"
+        raise "Error occured in #{adapter.class.name}: #{adapter_data}"
       end
       currency_rate = fetch_currency(adapter_data[:currency])
       {

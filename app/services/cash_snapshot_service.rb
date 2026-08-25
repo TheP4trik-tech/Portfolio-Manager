@@ -5,7 +5,7 @@ class CashSnapshotService
 
   def call
     data = EurConverter.new(@user).call
-    if data[:total_balance].zero? && data[:available_cash].zero?
+    if data[:total_balance].zero?
       Rails.logger.warn "Skipping zero snapshot for user #{@user.id}"
       return
     end
@@ -20,6 +20,5 @@ class CashSnapshotService
     )
   rescue => e
     Rails.logger.error "Error in CashSnapshotService for user #{@user.id}: #{e.message}"
-    raise
   end
 end
