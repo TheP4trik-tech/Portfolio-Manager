@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_17_134450) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_25_220121) do
   create_table "api_credentials", force: :cascade do |t|
     t.string "api_id"
     t.string "api_key"
     t.datetime "created_at", null: false
+    t.boolean "error_sent", default: false
     t.string "provider"
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false

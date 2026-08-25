@@ -1,10 +1,11 @@
-Hello <%= @user.first_name%>, we are sending you your daily portfolio summary.
+<h1>Hello <%= @user.first_name%>, we are sending you your daily portfolio summary. </h1>
 <% if @last_snapshot.present? && @latest_snapshot.present? %>
-  Total portfolio value changed by <%= number_to_currency(( @latest_snapshot.total_balance - @last_snapshot.total_balance ), unit: "€", precision: 2) %>
-  Total profit change by <%= number_to_currency((@latest_snapshot.profit_loss - @last_snapshot.profit_loss ), unit: "€", precision: 2) %>,
-  current total P&L: <%= number_to_currency(@last_snapshot.profit_loss, unit: "€", precision: 2)%>
+  <p>Total portfolio value changed by <%= number_to_currency(( @latest_snapshot.total_balance - @last_snapshot.total_balance ), unit: "€", precision: 2) %></p>
+  <p>Total profit change by <%= number_to_currency((@latest_snapshot.profit_loss - @last_snapshot.profit_loss ), unit: "€", precision: 2) %>,
+  </p>
+  <p>current total P&L: <%= number_to_currency(@last_snapshot.profit_loss, unit: "€", precision: 2)%></p>
   current total balance: <%= number_to_currency(@last_snapshot.total_balance, unit: "€", precision: 2)%>
   <%= link_to "Open portfolio", @url %>
 <% else %>
-  No data available
+  <p>No data available</p>
 <% end %>
