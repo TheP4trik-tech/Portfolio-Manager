@@ -13,9 +13,16 @@ production:
   portfolio_sync:
     class: SyncPortfolioJob
     schedule: every 1 hour
+  daily_summary_job:
+    class: DailySummaryJob
+    schedule: "0 0 * * *"
 
 
 development:
   portfolio_sync:
     class: SyncPortfolioJob
     schedule: every 1 hour
+  daily_summary_job:
+    class: DailySummaryJob
+    schedule: "0 0 * * *"
+

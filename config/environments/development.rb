@@ -6,6 +6,8 @@ Rails.application.configure do
   # Make code changes take effect immediately without server restart.
   config.enable_reloading = true
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
 
   ## Jobs uses solid queue, by default they would be lost as they are stored in RAM
   config.active_job.queue_adapter = :solid_queue
