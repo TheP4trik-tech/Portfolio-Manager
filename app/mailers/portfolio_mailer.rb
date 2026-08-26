@@ -11,7 +11,7 @@ class PortfolioMailer < ApplicationMailer
 
   def daily_summary_mail
     @user = params[:user]
-    @last_snapshot =  @user.cash_snapshots.where(created_at: 24.hours.ago..Time.current).last
+    @last_snapshot = @user.cash_snapshots.where(created_at: 24.hours.ago..Time.current).first
     @latest_snapshot = @user.cash_snapshots.last
     @url  = "http://example.com/login"
     mail(to: @user.email, subject: "Daily Portfolio Summary")
