@@ -84,6 +84,7 @@ group :test do
   gem "rspec-rails"
   gem "factory_bot_rails"
   gem "faker"
+  gem "webmock", ">= 3.26.3"
 end
 
 gem "devise", "~> 5.0"
