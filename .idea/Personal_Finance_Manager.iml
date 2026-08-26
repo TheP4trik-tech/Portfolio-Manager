@@ -64,6 +64,7 @@
     <orderEntry type="library" scope="PROVIDED" name="date (v3.5.1, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="debug (v1.11.1, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="devise (v5.0.4, RVM: ruby-3.3.11) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.6.2, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="dotenv (v3.2.0, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="drb (v2.2.3, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="dry-configurable (v1.4.0, RVM: ruby-3.3.11) [gem]" level="application" />
@@ -77,6 +78,9 @@
     <orderEntry type="library" scope="PROVIDED" name="erb (v6.0.7, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubi (v1.13.1, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="et-orbi (v1.4.1, RVM: ruby-3.3.11) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="factory_bot (v6.6.0, RVM: ruby-3.3.11) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="factory_bot_rails (v6.5.1, RVM: ruby-3.3.11) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="faker (v3.8.0, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="faraday (v2.14.3, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="faraday-net_http (v3.4.4, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="faraday-retry (v2.4.0, RVM: ruby-3.3.11) [gem]" level="application" />
@@ -149,6 +153,11 @@
     <orderEntry type="library" scope="PROVIDED" name="reline (v0.7.0, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="responders (v3.2.0, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rexml (v3.4.4, RVM: ruby-3.3.11) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-core (v3.13.6, RVM: ruby-3.3.11) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-expectations (v3.13.5, RVM: ruby-3.3.11) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-mocks (v3.13.8, RVM: ruby-3.3.11) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-rails (v8.0.4, RVM: ruby-3.3.11) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.13.7, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop (v1.89.0, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop-ast (v1.50.0, RVM: ruby-3.3.11) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop-performance (v1.27.0, RVM: ruby-3.3.11) [gem]" level="application" />
