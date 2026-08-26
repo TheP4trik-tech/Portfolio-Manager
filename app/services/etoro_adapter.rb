@@ -40,7 +40,7 @@ class EtoroAdapter
       available_cash: calculate_available_cash(equity_summary),
       total_investments:  calculate_total_investments(equity_summary),
       profit_loss: equity_summary["unrealizedPnL"],
-      currency: "USD"
+      currency: "USD" ## hardcoded Etoro has only USD
     }
   end
 
