@@ -73,7 +73,7 @@ class EurConverter
         failed_credential = @user.api_credentials.find_by(provider: provider)
         if failed_credential && !failed_credential.error_sent?
           failed_credential.update(error_sent: true)
-          PortfolioMailer.with(user: @user, provider: provider).error_mail.deliver_later
+          PortfolioMailer.with(user: @user, provider: @provider, error_message: adapter_data).error_mail.deliver_later
         end
         raise "Error occured in #{provider}: #{adapter_data}"
       end

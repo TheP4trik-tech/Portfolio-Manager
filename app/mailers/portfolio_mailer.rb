@@ -3,6 +3,8 @@ class PortfolioMailer < ApplicationMailer
 
   def error_mail
     @user = params[:user]
+    @error_message = params[:error_message]
+    @provider = params[:provider]
     @url  = "http://example.com/login"
     mail(to: @user.email, subject: "Error warning")
   end
