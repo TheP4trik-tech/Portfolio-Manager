@@ -7,7 +7,7 @@ class SyncPortfolioJob < ApplicationJob
     User.joins(:api_credentials).distinct.find_each do |user|
       CashSnapshotService.new(user).call
     rescue => e
-       "Error occured with user #{user}, #{e}"
+      Rails.logger.error "Error occured with user #{user.id}: #{e.message}"
     end
-  end
+    end
 end

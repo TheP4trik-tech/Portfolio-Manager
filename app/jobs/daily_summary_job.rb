@@ -1,5 +1,5 @@
 class DailySummaryJob < ApplicationJob
-  queue_as :default
+  queue_as :mailers
 
   def perform
     User.joins(:cash_snapshots).distinct.find_each do |user|
