@@ -29,9 +29,9 @@ RSpec.describe EtoroAdapter, type: :service do
 
   it "unauthorized access" do
     credentials = user.api_credentials.find_by(provider: "etoro")
-    stub_request(:get, uri).with(headers: { "x-api-key" => credentials.api_id, "x-user-key" => credentials.api_key }).to_return(status: 400, body: {}.to_json, headers: { "Content-Type" => "application/json" })
+    stub_request(:get, uri).with(headers: { "x-api-key" => credentials.api_id, "x-user-key" => credentials.api_key }).to_return(status: 401, body: {}.to_json, headers: { "Content-Type" => "application/json" })
     response = EtoroAdapter.new(user).call
-    expect(response[:status]).to eq(400)
-    expect(response[:body]).to eq({}.to_json)
+    expect(response).to be_a(String)
+    expect(response).to eq("Invalid credentials")
   end
 end
