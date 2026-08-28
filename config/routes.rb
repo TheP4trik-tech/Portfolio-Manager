@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :api_credentials, except: [ :show ]
   resources :user, except: [ :new, :index ]
   resources :cash_snapshots, only: [ :index ]
+  get "/docs", to: "pages#docs"
+  get "/demo", to: "pages#demo"
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
