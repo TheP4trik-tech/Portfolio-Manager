@@ -1,0 +1,66 @@
+<div class="bg-black min-h-screen pb-12">
+  <div class="pt-6 px-8 max-w-4xl mx-auto">
+
+  <div class="mb-12">
+    <h1 class="text-white text-3xl font-bold tracking-tight mb-2">Personal Finance Manager</h1>
+    <p class="text-slate-400 text-sm tracking-widest uppercase font-semibold mb-3">Documentation</p>
+    <%= link_to "View on GitHub", "https://github.com/TheP4trik-tech/Portfolio-Manager", target: "_blank", class: "text-indigo-400 hover:text-indigo-300 text-sm font-semibold transition-all" %>
+    <p class="text-slate-300 leading-relaxed">
+      Personal Finance Manager is a portfolio tracking tool that aggregates your broker data into a unified EUR dashboard.
+      Connect your broker accounts, and we'll automatically sync your portfolio data and send you daily summaries.
+    </p>
+  </div>
+
+  <div class="mb-12">
+    <h2 class="text-white text-xl font-bold tracking-tight mb-4">Supported Brokers (I'm working for more)</h2>
+    <div class="flex gap-4">
+      <div class="bg-slate-950 border border-slate-800/50 rounded-xl p-4 flex items-center gap-3">
+        <%= image_tag("etoro_logo.png", class: "w-8 h-8 object-contain") %>
+        <span class="text-white font-semibold text-sm">eToro</span>
+      </div>
+      <div class="bg-slate-950 border border-slate-800/50 rounded-xl p-4 flex items-center gap-3">
+        <%= image_tag("trading212_icon.png", class: "w-8 h-8 object-contain") %>
+        <span class="text-white font-semibold text-sm">Trading 212</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-12">
+    <h2 class="text-white text-xl font-bold tracking-tight mb-4">Getting Started</h2>
+    <div class="space-y-4">
+      <div class="bg-slate-950 border border-slate-800/50 rounded-xl p-5">
+        <p class="text-indigo-400 text-xs font-semibold tracking-widest uppercase mb-1">Step 1</p>
+        <p class="text-white font-semibold text-sm mb-1">Add your API credentials</p>
+        <p class="text-slate-400 text-sm">Go to API Credentials and add your broker API key and ID. Your credentials are encrypted and never stored in plain text.</p>
+      </div>
+      <div class="bg-slate-950 border border-slate-800/50 rounded-xl p-5">
+        <p class="text-indigo-400 text-xs font-semibold tracking-widest uppercase mb-1">Step 2</p>
+        <p class="text-white font-semibold text-sm mb-1">Wait for your first sync</p>
+        <p class="text-slate-400 text-sm">Your portfolio will be synced automatically within the hour. You'll receive an email if anything goes wrong.</p>
+      </div>
+      <div class="bg-slate-950 border border-slate-800/50 rounded-xl p-5">
+        <p class="text-indigo-400 text-xs font-semibold tracking-widest uppercase mb-1">Step 3</p>
+        <p class="text-white font-semibold text-sm mb-1">Track your portfolio</p>
+        <p class="text-slate-400 text-sm">View your portfolio value over time on the dashboard. All values are converted to EUR automatically.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-12">
+    <h2 class="text-white text-xl font-bold tracking-tight mb-4">How Portfolio Sync Works</h2>
+    <div class="bg-slate-950 border border-slate-800/50 rounded-xl p-6 space-y-4">
+      <p class="text-slate-300 text-sm leading-relaxed">
+        Your portfolio is synced automatically every hour. During each sync, we fetch your latest portfolio data from all connected brokers, convert everything to EUR using live exchange rates, and save a snapshot.
+      </p>
+      <p class="text-slate-300 text-sm leading-relaxed">
+        If a broker returns an error (like invalid credentials), we'll send you an email notification.
+        Note that if one of your brokers fails to connect, your snapshots won't save as it would disrupt data chart, this will continue till you edit your invalid credentials
+      </p>
+      <p class="text-slate-300 text-sm leading-relaxed">
+        You'll also receive a daily summary email every midnight with your portfolio changes over the last 24 hours.
+      </p>
+    </div>
+  </div>
+
+</div>
+</div>

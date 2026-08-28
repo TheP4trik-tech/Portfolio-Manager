@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
   def index
-    ## parsing user snapshots for chart-controller.js
+    ## parsing user snapshots for chart-controller.js format
     raw_snapshots = current_user.cash_snapshots
                                 .order(:created_at)
                                 .map { |s| { time: s.created_at.to_i, value: s.total_balance.to_f, profit_loss: s.profit_loss.to_f } }
