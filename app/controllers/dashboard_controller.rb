@@ -7,7 +7,7 @@ class DashboardController < ApplicationController
                                 .uniq { |s| s[:time] }
 
     @hourly_data = raw_snapshots.select { |s| s[:time] >= 7.days.ago.to_i }
-    @daily_history = raw_snapshots
+    @daily_data = raw_snapshots
       .group_by { |s| Time.at(s[:time]).to_date }
       .map { |time, records| records.last }
   end

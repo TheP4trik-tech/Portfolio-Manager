@@ -3,8 +3,8 @@ import { AreaSeries, createChart } from 'lightweight-charts';
 
 export default class extends Controller {
     connect() {
-        const chartContainer = document.getElementById('chartContainer');
-        const buttonsContainer = document.getElementById('buttonsContainer');
+        const chartContainer = this.element.querySelector('#chartContainer');
+        const buttonsContainer = this.element.querySelector('#buttonsContainer');
 
         const options = {
             autoSize: true,
@@ -41,8 +41,10 @@ export default class extends Controller {
 
 
 
+        chartContainer.innerHTML = ''; // this enables more charts to be generated within a user session
 
         const chart = createChart(chartContainer, options);
+
 
         const areaSeries = chart.addSeries(AreaSeries, {
             lineColor: '#2962FF',
@@ -56,6 +58,8 @@ export default class extends Controller {
             crosshairMarkerBorderColor: '#ffffff',
             crosshairMarkerBackgroundColor: '#2962FF',
         });
+
+
 
         let currentInterval = '1M';
         const setReturnValues = (data, from) => {
@@ -132,7 +136,7 @@ export default class extends Controller {
                 from: from.getTime() / 1000,
                 to: now.getTime() / 1000
             });
-            setReturnValues(activeData, from.getTime());
+            setReturnValues(activeData, from.getTime())
             renderButtons();
         }
 
