@@ -6,7 +6,6 @@ class PagesController < ApplicationController
     demo_data = Rails.cache.fetch("demo_chart_data", expires_in: 1.day) do
       build_demo_dataset
     end
-
     @hourly_data = demo_data[:hourly]
     @daily_data  = demo_data[:daily]
   end
@@ -17,7 +16,6 @@ class PagesController < ApplicationController
   ## generates data suited for lightweight chart demo, which will store in cache for all users
   def build_demo_dataset
     now = Time.current
-
 
     base_value = 1500.0
     current_value = base_value

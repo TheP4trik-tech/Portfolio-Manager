@@ -4,7 +4,6 @@ class CashSnapshotsController < ApplicationController
     @cash_snapshot = CashSnapshot.new(cash_snapshot_params)
     respond_to do |format|
       if @cash_snapshot.save
-
       end
     end
   end
