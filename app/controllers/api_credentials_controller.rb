@@ -1,7 +1,6 @@
 class ApiCredentialsController < ApplicationController
   load_and_authorize_resource param_method: :permitted_params
   def index
-    user = current_user
     @api_credentials = current_user.api_credentials
   end
 
@@ -18,11 +17,10 @@ class ApiCredentialsController < ApplicationController
     end
   end
   def edit
-    @api_credential = ApiCredential.find(params[:id])
   end
 
   def update
-    @api_credential = ApiCredential.find(params[:id])
+    @api_credential
     if @api_credential.update(permitted_params)
       flash[:notice] = "Api credential was successfully updated."
       respond_to do |format|
