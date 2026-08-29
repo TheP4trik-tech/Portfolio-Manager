@@ -1,38 +1,29 @@
-<div class="pt-6 px-4 bg-black min-h-screen">
-  <div data-controller="chart"
-     data-chart-hourly-value="<%= @hourly_data.to_json %>"
-     data-chart-daily-value="<%= @daily_history.to_json %>"
-     class="w-full max-w-4xl mx-auto bg-black border border-[#2B2B43] rounded-2xl p-8 font-sans">
+  <div class="pt-6 px-4 bg-black min-h-screen">
+    <div data-controller="chart"
+       data-chart-hourly-value="<%= @hourly_data.to_json %>"
+       data-chart-daily-value="<%= @daily_data.to_json %>"
+       class="w-full max-w-4xl mx-auto bg-black border border-[#2B2B43] rounded-2xl p-8 font-sans">
 
-    <% if @hourly_data.empty? %>
-      <div class="absolute inset-0 flex items-center justify-center z-10 rounded-2xl bg-black/80">
-        <div class="text-center">
-          <p class="text-gray-400 text-lg font-medium">No data yet</p>
-          <p class="text-[#A3A6AF] text-sm mt-1">Add your API credentials to start tracking</p>
-          <%= link_to "Add credentials", new_api_credential_path, class: "mt-4 inline-block text-[#00E396] border border-[#00E396] px-4 py-2 rounded-lg text-sm hover:bg-[#00E396]/10" %>
+
+    <div class="flex justify-between items-start mb-8">
+      <div>
+        <h2 class="text-gray-400 text-4xl font-bold tracking-tight">Area-Series Chart</h2>
+        <p class="text-[#A3A6AF] text-sm mt-1 font-medium">Portfolio Value Development</p>
+      </div>
+
+      <div class="text-right text-gray-400">
+        Profit
+        <div id="returnValue" class="text-3xl font-extrabold text-[#00E396] tracking-tight transition-all duration-200">
+          -
+        </div>
+        <div id="returnPercentage" class="text-sm font-semibold text-[#00E396] mt-0.5 inline-flex items-center px-2 py-0.5 rounded bg-[#00E396]/10">
+          -
         </div>
       </div>
-    <% end %>
-
-  <div class="flex justify-between items-start mb-8">
-    <div>
-      <h2 class="text-gray-400 text-4xl font-bold tracking-tight">Area-Series Chart</h2>
-      <p class="text-[#A3A6AF] text-sm mt-1 font-medium">Portfolio Value Development</p>
     </div>
 
-    <div class="text-right text-gray-400">
-      Profit
-      <div id="returnValue" class="text-3xl font-extrabold text-[#00E396] tracking-tight transition-all duration-200">
-        -
-      </div>
-      <div id="returnPercentage" class="text-sm font-semibold text-[#00E396] mt-0.5 inline-flex items-center px-2 py-0.5 rounded bg-[#00E396]/10">
-        -
-      </div>
-    </div>
+    <div id="buttonsContainer" class="flex gap-4 mb-8 pl-2"></div>
+
+    <div id="chartContainer" class="w-full h-[400px]"></div>
   </div>
-
-  <div id="buttonsContainer" class="flex gap-4 mb-8 pl-2"></div>
-
-  <div id="chartContainer" class="w-full h-[400px]"></div>
-</div>
-</div>
+  </div>
