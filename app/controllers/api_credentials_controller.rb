@@ -9,7 +9,6 @@ class ApiCredentialsController < ApplicationController
   end
 
   def destroy
-    @api_credential = ApiCredential.find(params[:id])
     @api_credential.destroy
     respond_to do |format|
       format.turbo_stream

@@ -3,42 +3,48 @@ class PagesController < ApplicationController
   end
 
   def demo
-    demo_data = Rails.cache.fetch("demo_chart_data", expires_in: 1.day) do
-      build_demo_dataset
-    end
-    @hourly_data = demo_data[:hourly]
-    @daily_data  = demo_data[:daily]
+    @hourly_data = generate_hourly_data
+    @daily_data  = generate_daily_data
+
+    last_item = @hourly_data.last
+
+    @latest_snapshot = {
+      total_balance: last_item[:value],
+      profit_loss: last_item[:profit_loss],
+      total_investments: (last_item[:value] * 0.7).round(2),
+      available_cash: (last_item[:value] * 0.3).round(2)
+    }
   end
 
   private
 
-
-  ## generates data suited for lightweight chart demo, which will store in cache for all users
-  def build_demo_dataset
-    now = Time.current
-
+  def generate_hourly_data
+    current_value = 1500.0
     base_value = 1500.0
-    current_value = base_value
-    hourly = (0..168).to_a.reverse.map do |i|
-      current_value += rand(-15.0..18.0)
+
+    (1..24).map do |i|
+      current_value += rand(-10.0..15.0)
+
       {
-        time: (now - i.hours).to_i,
+        time: (25 - i).hours.ago.to_i,
         value: current_value.round(2),
         profit_loss: (current_value - base_value).round(2)
       }
     end
+  end
 
+  def generate_daily_data
+    current_value = 1000.0
     base_value = 1000.0
-    current_value = base_value
-    daily = (0..365).to_a.reverse.map do |i|
-      current_value += rand(-40.0..50.0)
+
+    (1..30).map do |i|
+      current_value += rand(-30.0..40.0)
+
       {
-        time: (now - i.days).to_i,
+        time: (31 - i).days.ago.to_i,
         value: current_value.round(2),
         profit_loss: (current_value - base_value).round(2)
       }
     end
-
-    { hourly: hourly, daily: daily }
   end
 end

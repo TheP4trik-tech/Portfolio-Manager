@@ -1,33 +1,85 @@
-<div class="min-h-screen bg-slate-950 p-8">
-  <div class="max-w-3xl mx-auto">
+<div class="pt-8 px-4 sm:px-8 bg-black min-h-screen text-slate-200 pb-20">
+  <div class="w-full max-w-4xl mx-auto space-y-6">
 
-    <div class="flex items-center justify-between mb-6">
-      <h1 class="text-white text-xs font-semibold tracking-widest uppercase">Profile</h1>
-      <%= link_to "EDIT", edit_user_path(current_user), class: "text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-slate-800/80">
+      <div>
+        <h1 class="text-xl font-bold text-white tracking-tight">Account Settings</h1>
+        <p class="text-slate-400 font-mono text-xs mt-0.5">Manage your account, email notifications</p>
+      </div>
     </div>
 
-    <div class="bg-slate-950 border border-slate-800/50 rounded-xl p-5 space-y-4">
+    <%= form_with(model: @user, url: user_path, method: :patch, class: "space-y-6") do |f| %>
 
-      <div class="flex items-center justify-between border-b border-slate-800/50 pb-4">
-        <span class="text-slate-400 text-xs font-semibold tracking-widest uppercase">Name</span>
-        <span class="text-white text-sm"><%= current_user.first_name %> <%= current_user.last_name %></span>
+      <div class="bg-slate-950/80 border border-slate-800/80 rounded-xl p-5 space-y-4">
+        <div class="pb-3 border-b border-slate-800/60">
+          <h2 class="text-white text-sm font-semibold tracking-tight">Personal Details</h2>
+          <p class="text-slate-400 font-mono text-xs mt-0.5">Your identity (no one will see this)</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <%= f.label :first_name, "First Name", class: "block text-slate-400 font-mono text-[11px] uppercase tracking-wider mb-1.5" %>
+            <%= f.text_field :first_name, autocomplete: "given-name", placeholder: "e.g. John",
+                             class: "w-full bg-slate-900 border border-slate-800 text-slate-200 font-mono text-xs rounded-lg px-3.5 py-2 focus:border-indigo-500/50 focus:outline-none transition placeholder:text-slate-600" %>
+          </div>
+          <div>
+            <%= f.label :last_name, "Last Name", class: "block text-slate-400 font-mono text-[11px] uppercase tracking-wider mb-1.5" %>
+            <%= f.text_field :last_name, autocomplete: "family-name", placeholder: "e.g. Doe",
+                             class: "w-full bg-slate-900 border border-slate-800 text-slate-200 font-mono text-xs rounded-lg px-3.5 py-2 focus:border-indigo-500/50 focus:outline-none transition placeholder:text-slate-600" %>
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-slate-800/60">
+          <p class="text-slate-500 font-mono text-[10px] uppercase tracking-wider mb-1.5">Email Address</p>
+          <input type="text" disabled value="<%= @user.email %>" class="w-full bg-slate-900/40 border border-slate-800/50 text-slate-500 font-mono text-xs rounded-lg px-3.5 py-2 cursor-not-allowed">
+        </div>
       </div>
 
-      <div class="flex items-center justify-between border-b border-slate-800/50 pb-4">
-        <span class="text-slate-400 text-xs font-semibold tracking-widest uppercase">Email</span>
-        <span class="text-white text-sm"><%= current_user.email %></span>
+      <div class="bg-slate-950/80 border border-slate-800/80 rounded-xl p-5 space-y-4">
+        <div class="pb-3 border-b border-slate-800/60">
+          <h2 class="text-white text-sm font-semibold tracking-tight">Email Notifications</h2>
+        </div>
+
+        <div class="space-y-3">
+          <div class="flex items-center justify-between p-3.5 bg-slate-900/50 border border-slate-800/80 rounded-lg">
+            <div>
+              <p class="text-slate-200 text-xs font-semibold">Daily Summary Message</p>
+              <p class="text-slate-400 font-mono text-[11px] mt-0.5">Reports your P&L + total balance difference</p>
+            </div>
+            <%= f.check_box :daily_summary_email, class: "toggle toggle-sm bg-slate-800 border-slate-700 checked:bg-indigo-600" %>
+          </div>
+
+          <div class="flex items-center justify-between p-3.5 bg-slate-900/50 border border-slate-800/80 rounded-lg">
+            <div>
+              <p class="text-slate-200 text-xs font-semibold">Broker error</p>
+              <p class="text-slate-400 font-mono text-[11px] mt-0.5">Immediate alert if an API credential sync fails</p>
+            </div>
+            <%= f.check_box :error_alert_email, class: "toggle toggle-sm bg-slate-800 border-slate-700 checked:bg-indigo-600" %>
+          </div>
+        </div>
       </div>
 
-      <div class="flex items-center justify-between border-b border-slate-800/50 pb-4">
-        <span class="text-slate-400 text-xs font-semibold tracking-widest uppercase">Member since</span>
-        <span class="text-white text-sm"><%= current_user.created_at.strftime("%B %Y") %></span>
+      <div class="flex justify-end">
+        <%= f.submit "Save Changes", class: "btn btn-xs bg-indigo-600 hover:bg-indigo-500 text-white font-mono tracking-wider border-0 rounded-lg px-5 py-2 transition cursor-pointer" %>
+      </div>
+    <% end %>
+
+    <div class="bg-slate-950/80 border border-rose-950/60 rounded-xl p-5 space-y-4">
+      <div class="pb-3 border-b border-rose-950/40">
+        <h2 class="text-rose-400 text-sm font-semibold tracking-tight">Danger Zone</h2>
+        <p class="text-slate-400 font-mono text-xs mt-0.5">Permanent account termination</p>
       </div>
 
-      <div class="flex items-center justify-between">
-        <span class="text-slate-400 text-xs font-semibold tracking-widest uppercase">Snapshots</span>
-        <span class="text-white text-sm"><%= current_user.cash_snapshots.count %></span>
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <p class="text-xs font-mono text-slate-400 max-w-md">
+          Deleting your account will permanently wipe all linked API keys, transaction logs, and snapshots.
+        </p>
+        <%= button_to "Delete Account", user_path,
+                      data: { turbo_confirm: "Are you sure you want to permanently delete your account?" },
+                      method: :delete,
+                      class: "btn btn-xs bg-rose-950/40 hover:bg-rose-900/60 border border-rose-900/60 text-rose-300 font-mono tracking-wider rounded-lg px-3 py-1.5 transition cursor-pointer flex-shrink-0" %>
       </div>
-
     </div>
+
   </div>
 </div>

@@ -1,66 +1,144 @@
-<div class="bg-black min-h-screen pb-12">
-  <div class="pt-6 px-8 max-w-4xl mx-auto">
+<div class="bg-black text-slate-200 min-h-screen pb-20 selection:bg-indigo-500 selection:text-white">
+  <div class="pt-12 px-6 max-w-4xl mx-auto space-y-16">
 
-  <div class="mb-12">
-    <h1 class="text-white text-3xl font-bold tracking-tight mb-2">Personal Finance Manager</h1>
-    <p class="text-slate-400 text-sm tracking-widest uppercase font-semibold mb-3">Documentation</p>
-    <%= link_to "View on GitHub", "https://github.com/TheP4trik-tech/Portfolio-Manager", target: "_blank", class: "text-indigo-400 hover:text-indigo-300 text-sm font-semibold transition-all" %>
-    <p class="text-slate-300 leading-relaxed">
-      Personal Finance Manager is a portfolio tracking tool that aggregates your broker data into a unified EUR dashboard.
-      Connect your broker accounts, and we'll automatically sync your portfolio data and send you daily summaries.
-    </p>
-  </div>
+    <header class="relative border-b border-slate-800/80 pb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/60 border border-indigo-500/30 text-indigo-400 text-xs font-mono mb-4 tracking-wider uppercase">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        Documentation
+      </div>
 
-  <div class="mb-12">
-    <h2 class="text-white text-xl font-bold tracking-tight mb-4">Supported Brokers (I'm working for more)</h2>
-    <div class="flex gap-4">
-      <div class="bg-slate-950 border border-slate-800/50 rounded-xl p-4 flex items-center gap-3">
-        <%= image_tag("etoro_logo.png", class: "w-8 h-8 object-contain") %>
-        <span class="text-white font-semibold text-sm">eToro</span>
+      <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4">
+        <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+          Personal Finance <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-300 to-emerald-400">Manager</span>
+        </h1>
+        <%= link_to "https://github.com/TheP4trik-tech/Portfolio-Manager", target: "_blank", class: "btn btn-sm btn-outline border-slate-700 hover:border-indigo-400 hover:bg-indigo-950/40 text-slate-300 font-mono text-xs w-fit rounded-lg gap-2 transition-all" do %>
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub repo
+        <% end %>
       </div>
-      <div class="bg-slate-950 border border-slate-800/50 rounded-xl p-4 flex items-center gap-3">
-        <%= image_tag("trading212_icon.png", class: "w-8 h-8 object-contain") %>
-        <span class="text-white font-semibold text-sm">Trading 212</span>
-      </div>
-    </div>
-  </div>
 
-  <div class="mb-12">
-    <h2 class="text-white text-xl font-bold tracking-tight mb-4">Getting Started</h2>
-    <div class="space-y-4">
-      <div class="bg-slate-950 border border-slate-800/50 rounded-xl p-5">
-        <p class="text-indigo-400 text-xs font-semibold tracking-widest uppercase mb-1">Step 1</p>
-        <p class="text-white font-semibold text-sm mb-1">Add your API credentials</p>
-        <p class="text-slate-400 text-sm">Go to API Credentials and add your broker API key and ID. Your credentials are encrypted and never stored in plain text.</p>
-      </div>
-      <div class="bg-slate-950 border border-slate-800/50 rounded-xl p-5">
-        <p class="text-indigo-400 text-xs font-semibold tracking-widest uppercase mb-1">Step 2</p>
-        <p class="text-white font-semibold text-sm mb-1">Wait for your first sync</p>
-        <p class="text-slate-400 text-sm">Your portfolio will be synced automatically within the hour. You'll receive an email if anything goes wrong.</p>
-      </div>
-      <div class="bg-slate-950 border border-slate-800/50 rounded-xl p-5">
-        <p class="text-indigo-400 text-xs font-semibold tracking-widest uppercase mb-1">Step 3</p>
-        <p class="text-white font-semibold text-sm mb-1">Track your portfolio</p>
-        <p class="text-slate-400 text-sm">View your portfolio value over time on the dashboard. All values are converted to EUR automatically.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="mb-12">
-    <h2 class="text-white text-xl font-bold tracking-tight mb-4">How Portfolio Sync Works</h2>
-    <div class="bg-slate-950 border border-slate-800/50 rounded-xl p-6 space-y-4">
-      <p class="text-slate-300 text-sm leading-relaxed">
-        Your portfolio is synced automatically every hour. During each sync, we fetch your latest portfolio data from all connected brokers, convert everything to EUR using live exchange rates, and save a snapshot.
+      <p class="text-slate-400 mt-4 text-base max-w-2xl leading-relaxed">
+        Automated portfolio tracking engine that aggregates broker balances into a unified, currency-normalized <strong class="text-indigo-300 font-medium">EUR snapshot</strong> with hourly automated reconciliation.
       </p>
-      <p class="text-slate-300 text-sm leading-relaxed">
-        If a broker returns an error (like invalid credentials), we'll send you an email notification.
-        Note that if one of your brokers fails to connect, your snapshots won't save as it would disrupt data chart, this will continue till you edit your invalid credentials
-      </p>
-      <p class="text-slate-300 text-sm leading-relaxed">
-        You'll also receive a daily summary email every midnight with your portfolio changes over the last 24 hours.
-      </p>
-    </div>
-  </div>
+    </header>
 
-</div>
+    <section class="space-y-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-sm font-mono uppercase tracking-widest text-slate-400">Supported Brokers</h2>
+        <span class="badge badge-sm badge-neutral border-slate-700 text-slate-400">More in development</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="relative overflow-hidden group bg-gradient-to-b from-slate-900/80 to-slate-950 border border-slate-800 rounded-2xl p-5 flex items-center gap-4 hover:border-emerald-500/50 transition-all duration-300">
+          <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 shadow-inner">
+            <%= image_tag("etoro_logo.png", class: "w-8 h-8 object-contain") %>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-white text-base">eToro</span>
+              <span class="badge badge-xs badge-success gap-1">Live</span>
+            </div>
+            <p class="text-xs text-slate-400 mt-0.5">Read-only</p>
+          </div>
+        </div>
+
+        <div class="relative overflow-hidden group bg-gradient-to-b from-slate-900/80 to-slate-950 border border-slate-800 rounded-2xl p-5 flex items-center gap-4 hover:border-cyan-500/50 transition-all duration-300">
+          <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 shadow-inner">
+            <%= image_tag("trading212_icon.png", class: "w-8 h-8 object-contain") %>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-white text-base">Trading 212</span>
+              <span class="badge badge-xs badge-success gap-1">Live</span>
+            </div>
+            <p class="text-xs text-slate-400 mt-0.5">Real only</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="space-y-6">
+      <h2 class="text-sm font-mono uppercase tracking-widest text-slate-400">How to setup</h2>
+
+      <ul class="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
+        <li>
+          <div class="timeline-middle">
+            <span class="flex h-7 w-7 items-center justify-center rounded-full bg-indigo-500/20 text-indigo-400 border border-indigo-500/40 text-xs font-bold">1</span>
+          </div>
+          <div class="timeline-start md:text-end mb-8 bg-slate-950/60 border border-slate-800/80 p-5 rounded-2xl shadow-sm">
+            <time class="font-mono text-xs text-indigo-400">Step 01</time>
+            <div class="text-base font-bold text-white mt-1">Create API credential</div>
+            <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+              Get you API credentials in your broker, we advise you to select read-only.
+              Navigate to <code>API Credentials</code> and create yours. All secret tokens and keys are encrypted using AES-256 before saving in DB.
+            </p>
+          </div>
+          <hr class="bg-slate-800"/>
+        </li>
+
+        <li>
+          <hr class="bg-slate-800"/>
+          <div class="timeline-middle">
+            <span class="flex h-7 w-7 items-center justify-center rounded-full bg-purple-500/20 text-purple-400 border border-purple-500/40 text-xs font-bold">2</span>
+          </div>
+          <div class="timeline-end mb-8 bg-slate-950/60 border border-slate-800/80 p-5 rounded-2xl shadow-sm">
+            <time class="font-mono text-xs text-purple-400">Step 02</time>
+            <div class="text-base font-bold text-white mt-1">First Scheduled Run</div>
+            <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+              Your portfolio sync will work automatically every hour, if there is any error, we'll send you an email.
+            </p>
+          </div>
+          <hr class="bg-slate-800"/>
+        </li>
+
+        <li>
+          <hr class="bg-slate-800"/>
+          <div class="timeline-middle">
+            <span class="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-xs font-bold">3</span>
+          </div>
+          <div class="timeline-start md:text-end bg-slate-950/60 border border-slate-800/80 p-5 rounded-2xl shadow-sm">
+            <time class="font-mono text-xs text-emerald-400">Step 03</time>
+            <div class="text-base font-bold text-white mt-1">Live Unified View</div>
+            <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+              Track portfolio metrics with automated FX conversion directly on your interactive chart dashboard.
+            </p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="space-y-4">
+      <h2 class="text-sm font-mono uppercase tracking-widest text-slate-400">System Mechanics</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-slate-950 border border-slate-800/80 rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-4 font-mono text-sm">↻</div>
+            <h3 class="text-white font-bold text-sm mb-2">Hourly Engine & FX Conversion</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              The worker fetches asset balances across all active APIs, converts non-EUR currencies via real-time market rates, and writes an atomic snapshot.
+            </p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-900 text-[11px] font-mono text-slate-400">
+            Frequency: Every 60 minutes
+          </div>
+        </div>
+
+        <div class="bg-slate-950 border border-amber-500/20 rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute -right-8 -top-8 w-24 h-24 bg-amber-500/5 rounded-full blur-xl pointer-events-none"></div>
+          <div>
+            <div class="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-4 font-mono text-sm">!</div>
+            <h3 class="text-amber-200 font-bold text-sm mb-2">Atomic Snapshot Integrity</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              If any broker authentication fails, snapshot generation is halted. This prevents distorted graph spikes caused by partial portfolio sums.
+              This will last until you change your credentials.
+            </p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-900 text-[11px] font-mono text-amber-400/80">
+            Fallback: Auto-alert via email
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
 </div>

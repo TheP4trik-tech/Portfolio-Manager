@@ -1,24 +1,27 @@
 <%= turbo_frame_tag dom_id(@api_credential) do %>
-  <div class="bg-slate-950 border border-slate-800/50 rounded-xl p-5 flex items-center gap-4">
-
-    <%= form_with model: @api_credential, class: "flex items-center gap-3 w-full" do |f| %>
+  <div class="bg-slate-950/80 border border-slate-800/60 rounded-xl p-4 sm:p-5">
+    <%= form_with model: @api_credential, class: "flex flex-wrap sm:flex-nowrap items-center gap-3 w-full" do |f| %>
 
       <%= f.select :provider, [["Trading 212", "trading212"], ["eToro", "etoro"]], {},
-                   class: "select select-ghost select-sm bg-slate-900 text-white text-xs font-semibold tracking-widest focus:outline-none focus:border-indigo-400 transition w-36" %>
+                   class: "select select-sm bg-slate-900 border border-slate-800 text-slate-200 font-mono text-xs focus:border-indigo-500/50 focus:outline-none rounded-lg w-full sm:w-40 flex-shrink-0" %>
+
       <%= f.text_field :api_id, placeholder: "API ID",
-                       class: "bg-slate-900 border border-slate-800 text-white rounded-lg px-3 py-2 text-xs tracking-widest focus:outline-none focus:border-indigo-400 transition flex-1 placeholder-slate-600" %>
-      <div data-controller="password-visibility" class="relative flex-1">
+                       class: "bg-slate-900 border border-slate-800 text-slate-200 placeholder-slate-600 font-mono text-xs rounded-lg px-3.5 py-1.5 focus:border-indigo-500/50 focus:outline-none transition w-full sm:flex-1 h-8" %>
+
+      <div data-controller="password-visibility" class="relative w-full sm:flex-1">
         <%= f.password_field :api_key, placeholder: "API Key",
-                             class: "w-full bg-slate-900 border border-slate-800 text-white rounded-lg px-3 py-2 text-xs tracking-widest focus:outline-none focus:border-indigo-400 transition flex-1 placeholder-slate-600",data: {"password-visibility-target": "input"}, spellcheck: false  %>
-        <button type="button" data-action="password-visibility#toggle" class="absolute right-2 top-1/2 -translate-y-1/2">
-          <span data-password-visibility-target="icon"><%= image_tag "eye_icon.png", class: "w-5 h-5 invert", alt: "Eye" %></span>
-          <span data-password-visibility-target="icon" class="hidden"><%= image_tag "eye_slash_icon.png", class: "w-5 h-5 invert", alt: "Eye Slash" %></span>
+                             class: "w-full bg-slate-900 border border-slate-800 text-slate-200 placeholder-slate-600 font-mono text-xs rounded-lg pl-3.5 pr-8 py-1.5 focus:border-indigo-500/50 focus:outline-none transition h-8",
+                             data: { "password-visibility-target": "input" }, spellcheck: false %>
+        <button type="button" data-action="password-visibility#toggle" class="absolute right-2.5 top-1/2 -translate-y-1/2 opacity-60 hover:opacity-100 transition-opacity">
+          <span data-password-visibility-target="icon"><%= image_tag "eye_icon.png", class: "w-4 h-4 invert", alt: "Eye" %></span>
+          <span data-password-visibility-target="icon" class="hidden"><%= image_tag "eye_slash_icon.png", class: "w-4 h-4 invert", alt: "Eye Slash" %></span>
         </button>
       </div>
 
-      <%= f.submit "Save", class: "text-white text-xs font-semibold tracking-widest uppercase px-4 py-2 rounded-lg transition cursor-pointer bg-slate-800 hover:bg-slate-700 border border-slate-700 flex-shrink-0" %>
-
-      <%= link_to "Cancel", api_credentials_path, data: { turbo_frame: "_top" }, class: "text-slate-400 hover:text-white text-xs tracking-widest transition flex-shrink-0" %>
+      <div class="flex items-center gap-2 w-full sm:w-auto justify-end flex-shrink-0">
+        <%= f.submit "Save", class: "btn btn-xs bg-indigo-600 hover:bg-indigo-500 text-white font-mono text-[11px] tracking-wide border-0 rounded-lg px-3.5 py-1 transition cursor-pointer" %>
+        <%= link_to "Cancel", api_credentials_path, data: { turbo_frame: "_top" }, class: "btn btn-ghost btn-xs text-slate-400 hover:text-white font-mono text-[11px] tracking-wide rounded-lg px-2.5 py-1 transition-all" %>
+      </div>
 
     <% end %>
   </div>
