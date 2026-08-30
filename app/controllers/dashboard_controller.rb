@@ -10,5 +10,6 @@ class DashboardController < ApplicationController
     @daily_data = raw_snapshots
       .group_by { |s| Time.at(s[:time]).to_date }
       .map { |time, records| records.last }
+    @latest_snapshot = current_user.cash_snapshots.order(created_at: :desc).first
   end
 end

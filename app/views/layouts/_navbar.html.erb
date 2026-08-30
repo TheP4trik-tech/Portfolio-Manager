@@ -13,9 +13,9 @@
     <div class="flex items-center gap-1 flex-1">
       <%= link_to "DASHBOARD", root_path, class: "text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
       <%= link_to "API CREDENTIALS", api_credentials_path, class: "text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
-      <%= link_to "PROFILE", "", class: "text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
+      <%= link_to "PROFILE",user_path(current_user), class: "text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
       <%= link_to "DOCS", docs_path, class: "text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
-      <%= link_to "DEMO", demo_path, data: { turbo: false },class: "text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
+      <%= link_to "DEMO", demo_path,class: "text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
     </div>
 
     <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all flex-shrink-0" %></div>
