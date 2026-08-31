@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_25_220121) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_31_202654) do
   create_table "api_credentials", force: :cascade do |t|
     t.string "api_id"
     t.string "api_key"
@@ -36,8 +36,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_25_220121) do
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.boolean "daily_mail_accepted", default: true
     t.string "email"
     t.string "encrypted_password", default: "", null: false
+    t.boolean "error_mail_accepted", default: false
     t.string "first_name"
     t.string "last_name"
     t.datetime "remember_created_at"
