@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <%= form_with(model: @user, url: user_path, method: :patch, class: "space-y-6") do |f| %>
+    <%= form_with(model: @user, url: profiles_path(current_user), method: :patch, class: "space-y-6") do |f| %>
 
       <div class="bg-slate-950/80 border border-slate-800/80 rounded-xl p-5 space-y-4">
         <div class="pb-3 border-b border-slate-800/60">
@@ -46,7 +46,7 @@
               <p class="text-slate-200 text-xs font-semibold">Daily Summary Message</p>
               <p class="text-slate-400 font-mono text-[11px] mt-0.5">Reports your P&L + total balance difference</p>
             </div>
-            <%= f.check_box :daily_summary_email, class: "toggle toggle-sm bg-slate-800 border-slate-700 checked:bg-indigo-600" %>
+            <%= f.check_box :daily_mail_accepted, class: "toggle toggle-sm bg-slate-800 border-slate-700 checked:bg-indigo-600" %>
           </div>
 
           <div class="flex items-center justify-between p-3.5 bg-slate-900/50 border border-slate-800/80 rounded-lg">
@@ -54,7 +54,7 @@
               <p class="text-slate-200 text-xs font-semibold">Broker error</p>
               <p class="text-slate-400 font-mono text-[11px] mt-0.5">Immediate alert if an API credential sync fails</p>
             </div>
-            <%= f.check_box :error_alert_email, class: "toggle toggle-sm bg-slate-800 border-slate-700 checked:bg-indigo-600" %>
+            <%= f.check_box :error_mail_accepted, class: "toggle toggle-sm bg-slate-800 border-slate-700 checked:bg-indigo-600" %>
           </div>
         </div>
       </div>
@@ -74,7 +74,7 @@
         <p class="text-xs font-mono text-slate-400 max-w-md">
           Deleting your account will permanently wipe all linked API keys, transaction logs, and snapshots.
         </p>
-        <%= button_to "Delete Account", user_path,
+        <%= button_to "Delete Account", profiles_path(current_user),
                       data: { turbo_confirm: "Are you sure you want to permanently delete your account?" },
                       method: :delete,
                       class: "btn btn-xs bg-rose-950/40 hover:bg-rose-900/60 border border-rose-900/60 text-rose-300 font-mono tracking-wider rounded-lg px-3 py-1.5 transition cursor-pointer flex-shrink-0" %>
