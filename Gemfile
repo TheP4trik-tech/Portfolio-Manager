@@ -31,6 +31,10 @@ gem "nokogiri", ">= 1.19.4"
 gem "omniauth-google-oauth2"
 gem "omniauth"
 
+## Prevents abusive request and limits them
+
+gem "rack-attack", ">= 6.8"
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
