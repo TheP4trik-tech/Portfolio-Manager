@@ -4,7 +4,7 @@ class SyncPortfolioJob < ApplicationJob
   ## periodic(15 min) job to sync users CashSnapshots
 
   def perform
-    User.joins(:api_credentials).distinct.find_each do |user|
+    User.daily_mail_subscriber.distinct.find_each do |user|
       CashSnapshotService.new(user).call
     rescue => e
       Rails.logger.error "Error occured with user #{user.id}: #{e.message}"

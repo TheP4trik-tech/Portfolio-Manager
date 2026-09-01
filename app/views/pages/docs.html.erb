@@ -18,7 +18,7 @@
       </div>
 
       <p class="text-slate-400 mt-4 text-base max-w-2xl leading-relaxed">
-        Automated portfolio tracking engine that aggregates broker balances into a unified, currency-normalized <strong class="text-indigo-300 font-medium">EUR snapshot</strong> with hourly automated reconciliation.
+        Automated portfolio tracking engine that aggregates your broker data into a unified, <strong class="text-indigo-300 font-medium">EUR snapshot</strong> with hourly automated sync.
       </p>
     </header>
 
@@ -50,7 +50,7 @@
               <span class="font-bold text-white text-base">Trading 212</span>
               <span class="badge badge-xs badge-success gap-1">Live</span>
             </div>
-            <p class="text-xs text-slate-400 mt-0.5">Real only</p>
+            <p class="text-xs text-slate-400 mt-0.5">Real-Only</p>
           </div>
         </div>
       </div>
@@ -68,8 +68,8 @@
             <time class="font-mono text-xs text-indigo-400">Step 01</time>
             <div class="text-base font-bold text-white mt-1">Create API credential</div>
             <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-              Get you API credentials in your broker, we advise you to select read-only.
-              Navigate to <code>API Credentials</code> and create yours. All secret tokens and keys are encrypted using AES-256 before saving in DB.
+              Get you API credentials in your broker, we advise you to select read-only for security reasons.
+              Navigate to <%= link_to "API Credentials", api_credentials_path, class: "text-indigo-400 hover:text-indigo-300 underline underline-offset-4 decoration-indigo-400/60 hover:decoration-indigo-300 font-medium transition-colors" %> and create yours. All your API data are encrypted before saving, so no-one (even us) can't see your data.
             </p>
           </div>
           <hr class="bg-slate-800"/>
@@ -85,6 +85,7 @@
             <div class="text-base font-bold text-white mt-1">First Scheduled Run</div>
             <p class="text-xs text-slate-400 mt-2 leading-relaxed">
               Your portfolio sync will work automatically every hour, if there is any error, we'll send you an email.
+              You can change this in your profile.
             </p>
           </div>
           <hr class="bg-slate-800"/>
@@ -99,8 +100,7 @@
             <time class="font-mono text-xs text-emerald-400">Step 03</time>
             <div class="text-base font-bold text-white mt-1">Live Unified View</div>
             <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-              Track portfolio metrics with automated FX conversion directly on your interactive chart dashboard.
-            </p>
+              View all your accounts and live balances together on a single interactive chart.</p>
           </div>
         </li>
       </ul>
@@ -115,8 +115,7 @@
             <div class="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-4 font-mono text-sm">↻</div>
             <h3 class="text-white font-bold text-sm mb-2">Hourly Engine & FX Conversion</h3>
             <p class="text-xs text-slate-400 leading-relaxed">
-              The worker fetches asset balances across all active APIs, converts non-EUR currencies via real-time market rates, and writes an atomic snapshot.
-            </p>
+              The system automatically syncs your connected accounts, converts foreign currencies to EUR using live exchange rates, and saves an up-to-date snapshot of your portfolio.            </p>
           </div>
           <div class="mt-4 pt-4 border-t border-slate-900 text-[11px] font-mono text-slate-400">
             Frequency: Every 60 minutes
