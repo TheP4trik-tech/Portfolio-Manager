@@ -1,5 +1,5 @@
 <nav class="bg-slate-950 border-b border-slate-800/50 backdrop-blur-sm sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto px-8 py-4 flex items-center gap-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-8 py-4 flex items-center justify-between gap-4 md:gap-8">
 
     <a href="/" class="flex items-center gap-3 flex-shrink-0">
       <svg class="w-6 h-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
@@ -8,15 +8,44 @@
       <span class="text-white font-bold text-lg tracking-tight">Personal Finance</span>
     </a>
 
-    <span class="text-slate-700 text-lg">/</span>
-
-    <div class="flex items-center gap-1 flex-1">
-      <%= link_to "DASHBOARD", root_path, class: "text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
-      <%= link_to "API CREDENTIALS", api_credentials_path, class: "text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
-      <%= link_to "PROFILE", profiles_path(current_user), class: "text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
-      <%= link_to "DOCS", docs_path, class: "text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
-      <%= link_to "DEMO", demo_path,class: "text-slate-400 hover:text-white px-4 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
+    <div class="hidden md:flex items-center gap-6 flex-1">
+      <span class="text-slate-700 text-lg">/</span>
+      <div class="flex items-center gap-1">
+        <%= link_to "DASHBOARD", root_path, class: "text-slate-400 hover:text-white px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
+        <%= link_to "API CREDENTIALS", api_credentials_path, class: "text-slate-400 hover:text-white px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
+        <%= link_to "PROFILE", profiles_path(current_user), class: "text-slate-400 hover:text-white px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
+        <%= link_to "DOCS", docs_path, class: "text-slate-400 hover:text-white px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
+        <%= link_to "DEMO", demo_path, class: "text-slate-400 hover:text-white px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
+      </div>
     </div>
 
-    <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all flex-shrink-0" %></div>
+
+    <div class="hidden md:block flex-shrink-0">
+      <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all inline-block" %>
+    </div>
+
+    <details class="md:hidden group relative">
+      <summary class="list-none flex items-center justify-center p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/60 cursor-pointer transition-all">
+        <svg class="w-6 h-6 group-open:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+        <svg class="w-6 h-6 hidden group-open:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </summary>
+
+      <div class="absolute right-0 top-full mt-3 w-64 bg-slate-900 border border-slate-800 rounded-xl shadow-2xl p-4 flex flex-col gap-2 z-50">
+        <%= link_to "DASHBOARD", root_path, class: "text-slate-300 hover:text-white hover:bg-slate-800/80 px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
+        <%= link_to "API CREDENTIALS", api_credentials_path, class: "text-slate-300 hover:text-white hover:bg-slate-800/80 px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
+        <%= link_to "PROFILE", profiles_path(current_user), class: "text-slate-300 hover:text-white hover:bg-slate-800/80 px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
+        <%= link_to "DOCS", docs_path, class: "text-slate-300 hover:text-white hover:bg-slate-800/80 px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
+        <%= link_to "DEMO", demo_path, class: "text-slate-300 hover:text-white hover:bg-slate-800/80 px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
+
+        <div class="border-t border-slate-800 my-1"></div>
+
+        <%= link_to "Sign out", destroy_user_session_path, data: { turbo_method: :delete }, class: "bg-indigo-600 hover:bg-indigo-500 text-white text-center px-4 py-2.5 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
+      </div>
+    </details>
+
+  </div>
 </nav>
