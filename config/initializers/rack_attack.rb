@@ -25,7 +25,7 @@ class Rack::Attack
     end
   end
 
-  Rack::Attack.blocklisted_response = lambda do |_env|
+  Rack::Attack.blocklisted_responder = lambda do |_env|
     html = ActionView::Base.empty.render(file: "public/500.html")
     [ 403, { "Content-Type" => "text/html" }, [ html ] ]
   end
