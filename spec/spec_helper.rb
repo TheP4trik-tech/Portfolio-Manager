@@ -38,6 +38,11 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  # Source - https://stackoverflow.com/a/38819638
+  # Posted by Angel Huezo
+  # Retrieved 2026-09-03, License - CC BY-SA 3.0
+
+
   # This option will default to `:apply_to_host_groups` in RSpec 4 (and will
   # have no way to turn it off -- the option exists only for backwards
   # compatibility in RSpec 3). It causes shared context metadata to be
