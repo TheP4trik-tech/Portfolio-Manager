@@ -1,6 +1,4 @@
 class DailySummaryJob < ApplicationJob
-  queue_as :mailers
-
   def perform
     User.joins(:cash_snapshots).distinct.find_each do |user|
       if user.daily_mail_accepted?
