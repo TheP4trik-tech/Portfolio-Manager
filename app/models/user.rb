@@ -11,7 +11,7 @@ class User < ApplicationRecord
   validates :first_name, presence: true, length: 2..25
   validates :last_name, length: 1..25, allow_blank: true
 
-  scope :daily_mail_subscriber, -> { where(dail_mail_accepted: true) }
+  scope :daily_mail_subscriber, -> { where(daily_mail_accepted: true) }
   scope :error_mail_subscriber, -> { where(error_mail_accepted: true) }
   def self.from_omniauth(access_token)
     data = access_token.info
