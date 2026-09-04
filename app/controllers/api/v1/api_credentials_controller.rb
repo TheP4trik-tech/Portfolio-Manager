@@ -1,4 +1,4 @@
-class API::V1::ApiCredentialsController < ApplicationController
+class Api::V1::ApiCredentialsController < ApplicationController
   load_and_authorize_resource param_method: :permitted_params
 
   def show

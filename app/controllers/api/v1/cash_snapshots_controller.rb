@@ -1,4 +1,4 @@
-class API::V1::CashSnapshotsController < ApplicationController
+class Api::V1::CashSnapshotsController < ApplicationController
   def create
     @cash_snapshot = @cash_snapshot.new(permitted_params)
   end

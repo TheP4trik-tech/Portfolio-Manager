@@ -1,7 +1,6 @@
 # Name of your application. Used to uniquely configure containers.
 service: personal_finance_manager
 
-<% require "dotenv"; Dotenv.load(".env") %>
 
 # Name of the container image (use your-user/app-name on external registries).
 image: patriksmuda/personal_finance_manager
