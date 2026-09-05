@@ -25,10 +25,10 @@ ssh:
 # Using an SSL proxy like this requires turning on config.assume_ssl and config.force_ssl in production.rb!
 #
 # Don't use this when deploying to multiple web servers (then you have to terminate SSL at your load balancer).
-#
-# proxy:
-#   ssl: true
-#   host: app.example.com
+proxy:
+  ssl: true
+  host: railsfinancemanager.online
+  app_port: 80
 
 # Where you keep your container images.
 registry:
