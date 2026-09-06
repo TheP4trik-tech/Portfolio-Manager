@@ -9,7 +9,7 @@
 
 # Ignore all environment files.
 /.env*
-
+!/.env.example
 ## Ignore kamal secrets
 /.kamal/secrets*
 
