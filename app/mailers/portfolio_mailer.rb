@@ -25,7 +25,7 @@ class PortfolioMailer < ApplicationMailer
       @last_snapshot = nil
     end
 
-    @url  = "url"
+    @url  = new_user_session_url
     mail(to: @user.email, subject: "Daily Portfolio Summary")
   end
 end
