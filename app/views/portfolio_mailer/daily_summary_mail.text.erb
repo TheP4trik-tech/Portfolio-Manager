@@ -5,6 +5,8 @@ Hello <%= @user.first_name%>, we are sending you your daily portfolio summary.
   current total P&L: <%= number_to_currency(@last_snapshot.profit_loss, unit: "€", precision: 2)%>
   current total balance: <%= number_to_currency(@last_snapshot.total_balance, unit: "€", precision: 2)%>
   "Open portfolio" <%= @url %>
+  This mail is generated automatically, please do not reply.
+  If you wish to not receive email, you can turn it off in your profile settings
 <% else %>
   No data available
 <% end %>
