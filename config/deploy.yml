@@ -8,10 +8,10 @@ image: patriksmuda/personal_finance_manager
 servers:
   web:
     - 178.105.97.9
-  # job:
-  #   hosts:
-  #     - 192.168.0.1
-  #   cmd: bin/jobs
+  job:
+    hosts:
+      - 192.168.0.1
+    cmd: bin/jobs
 
 ssh:
   user: root
