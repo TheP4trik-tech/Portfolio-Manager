@@ -1,5 +1,5 @@
 class PortfolioMailer < ApplicationMailer
-  default from: "Acme <onboarding@resend.dev>"
+  default from: "<noreply@railfinancemanager.online>"
   def error_mail
     @user = params[:user]
     @error_message = params[:error_message]
