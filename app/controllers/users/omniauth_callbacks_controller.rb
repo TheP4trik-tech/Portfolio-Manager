@@ -13,4 +13,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_to new_user_registration_url, alert: @user.errors.full_messages.join("\n")
     end
   end
+  def failure
+    error_type = request.env["omniauth.error.type"] || params[:message]
+    error_msg  = request.env["omniauth.error"]&.message || "neznama chyba"
+
+    redirect_to new_user_session_path, alert: "OmniAuth selhal: [#{error_type}] #{error_msg}"
+  end
 end
