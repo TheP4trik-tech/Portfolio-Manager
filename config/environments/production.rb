@@ -27,10 +27,10 @@ Rails.application.configure do
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
   config.assume_ssl = true
 
-  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
+   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
    config.force_ssl = true
 
-  config.ssl_options = { hsts: true, subdomains: true, redirect: false }
+  config.ssl_options = { hsts: { subdomains: true }, redirect: false }
 
 
 
