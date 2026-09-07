@@ -5,6 +5,8 @@ services:
       dockerfile: Dockerfile.dev
     ports:
       - "3000:3000"
+    stdin_open: true
+    tty: true
     volumes:
       - .:/rails
       - storage:/rails/storage
