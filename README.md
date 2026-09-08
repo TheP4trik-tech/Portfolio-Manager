@@ -1,5 +1,5 @@
 # Personal Finance Manager
-*About
+About project:
 Portfolio summary application, that automatically fetches the data of your stock brokers (currently Etoro and Trading212).
 Converts that into unified EUR snapshots and displays them in Lightweight chart and notifies user via Mail, even if the API fetch goes wrong.
 
