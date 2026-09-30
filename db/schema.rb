@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_31_203511) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_30_141126) do
   create_table "api_credentials", force: :cascade do |t|
     t.string "api_id"
     t.string "api_key"
@@ -34,6 +34,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_31_203511) do
     t.index ["user_id"], name: "index_cash_snapshots_on_user_id"
   end
 
+  create_table "stock_snapshots", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "currency", null: false
+    t.string "stock_broker", null: false
+    t.decimal "total_value", precision: 10, scale: 2, null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_stock_snapshots_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.boolean "daily_mail_accepted", default: true
@@ -52,4 +62,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_31_203511) do
 
   add_foreign_key "api_credentials", "users"
   add_foreign_key "cash_snapshots", "users"
+  add_foreign_key "stock_snapshots", "users"
 end
