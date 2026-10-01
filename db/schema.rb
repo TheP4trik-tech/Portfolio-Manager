@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_30_141126) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_30_143238) do
   create_table "api_credentials", force: :cascade do |t|
     t.string "api_id"
     t.string "api_key"
     t.datetime "created_at", null: false
-    t.boolean "error_sent", default: false
     t.string "provider"
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
+    t.boolean "error_sent", default: false
     t.index ["user_id"], name: "index_api_credentials_on_user_id"
   end
 
@@ -35,27 +35,37 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_30_141126) do
   end
 
   create_table "stock_snapshots", force: :cascade do |t|
-    t.datetime "created_at", null: false
+    t.integer "user_id", null: false
+    t.decimal "total_value", precision: 10, scale: 2, null: false
     t.string "currency", null: false
     t.string "stock_broker", null: false
-    t.decimal "total_value", precision: 10, scale: 2, null: false
+    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
     t.index ["user_id"], name: "index_stock_snapshots_on_user_id"
+  end
+
+  create_table "stocks", force: :cascade do |t|
+    t.string "name", null: false
+    t.decimal "price", precision: 10, scale: 2, null: false
+    t.string "currency", null: false
+    t.string "stock_id", null: false
+    t.string "icon_uri"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.boolean "daily_mail_accepted", default: true
     t.string "email"
     t.string "encrypted_password", default: "", null: false
-    t.boolean "error_mail_accepted", default: true
     t.string "first_name"
     t.string "last_name"
     t.datetime "remember_created_at"
     t.datetime "reset_password_sent_at"
     t.string "reset_password_token"
     t.datetime "updated_at", null: false
+    t.boolean "error_mail_accepted", default: true
+    t.boolean "daily_mail_accepted", default: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
