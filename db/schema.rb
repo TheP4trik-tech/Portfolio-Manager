@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_30_143238) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_05_165406) do
   create_table "api_credentials", force: :cascade do |t|
     t.string "api_id"
     t.string "api_key"
@@ -52,6 +52,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_30_143238) do
     t.string "icon_uri"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "stock_snapshot_id", null: false
+    t.index ["stock_snapshot_id"], name: "index_stocks_on_stock_snapshot_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -73,4 +75,5 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_30_143238) do
   add_foreign_key "api_credentials", "users"
   add_foreign_key "cash_snapshots", "users"
   add_foreign_key "stock_snapshots", "users"
+  add_foreign_key "stocks", "stock_snapshots"
 end

@@ -52,6 +52,8 @@ class EtoroStocksService
     end
   end
 
+  ## Etoro does not provide stock name and icons in portfolio request,
+  ## so we have to make another connection and match Stock IDs in order to get their informations
   def get_stock_info
     begin
       ## Getting response
@@ -63,19 +65,32 @@ class EtoroStocksService
         return  e.response
       end
     end
-    instruments = response.body["instruments"]
-    if instruments.blank? || instruments["positions"].blank?
+    instruments = response.body["instrumentDisplayDatas"]
+    if instruments.blank?
       raise "No instruments in response"
     end
     stocks = get_portfolio_stocks
     stocks.map do |stock|
-      instrument = instruments.find { |instrument| instrument["id"] == stock[:stock_id] }
+      instrument = instruments.find { |instrument| instrument["instrumentID"] == stock[:stock_id] }
+      icon_uri = instrument.dig("images", 0, "uri")
       {
         price: stock[:price],
         stock_id: stock[:stock_id],
-        currency: instrument["currency"],
-        name: instrument["name"]
+        currency: stock[:currency],
+        name: instrument["instrumentDisplayName"],
+        icon_uri: icon_uri
+
       }
     end
+  end
+
+  def create_stock_snapshot
+    stocks = get_stock_info
+    sum = 0
+    stocks.each do |stock|
+      sum += stock[:price]
+    end
+    sum
+    StockSnapshot.create(total_value: sum, currency: "USD", user_id: @user, stock_broker: "etoro",)
   end
 end
