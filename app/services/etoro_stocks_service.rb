@@ -5,6 +5,9 @@ class EtoroStocksService
   end
 
   def call
+    portfolio_stocks = get_portfolio_stocks  ## retreive user stocks
+    user_stocks_with_names = get_stock_info(portfolio_stocks) ## gets stock name and image uri
+    create_stock_snapshot(user_stocks_with_names)  ## creates stocks snapshot with total sum of all stocks and creates individual stocks DB record
   end
   def etoro_api_connection
     if  @credentials.api_id.nil? || @credentials.api_key.nil?
@@ -30,14 +33,14 @@ class EtoroStocksService
       response = etoro_api_connection.get("api/v1/trading/info/portfolio")
     rescue Faraday::Error => e
       if e.response[:status] == 401
-        return "Invalid credentials"
+        raise "Invalid credentials"
       else
         return  e.response
       end
     end
-    portfolio = response.body["portfolio"]
+    portfolio = response.body["clientPortfolio"]
     if portfolio.blank? || portfolio["positions"].blank?
-      raise "No positions in portfolio"
+         raise "No positions in portfolio"
     end
     stocks = portfolio["positions"]
     if stocks.present? ## not necesarry there, but rails editor warned me and i cant live with this :D
@@ -54,22 +57,22 @@ class EtoroStocksService
 
   ## Etoro does not provide stock name and icons in portfolio request,
   ## so we have to make another connection and match Stock IDs in order to get their informations
-  def get_stock_info
+  def get_stock_info(user_portfolio_stocks)
     begin
       ## Getting response
       response = etoro_api_connection.get("/api/v1/market-data/instruments")
     rescue Faraday::Error => e
       if e.response[:status] == 401
-        return "Invalid credentials"
+        raise "Invalid credentials"
       else
-        return  e.response
+        raise e
       end
     end
     instruments = response.body["instrumentDisplayDatas"]
     if instruments.blank?
       raise "No instruments in response"
     end
-    stocks = get_portfolio_stocks
+    stocks = user_portfolio_stocks
     stocks.map do |stock|
       instrument = instruments.find { |instrument| instrument["instrumentID"] == stock[:stock_id] }
       icon_uri = instrument.dig("images", 0, "uri")
@@ -84,13 +87,21 @@ class EtoroStocksService
     end
   end
 
-  def create_stock_snapshot
-    stocks = get_stock_info
-    sum = 0
+  def create_stock_snapshot(user_stocks_with_names)
+    stocks = user_stocks_with_names
+    sum = stocks.sum { |stock| stock[:price] }
+
+    stock_snapshot = StockSnapshot.create!(total_value: sum, currency: "USD", user_id: @user.id, stock_broker: "etoro")
+
     stocks.each do |stock|
-      sum += stock[:price]
+      Stock.create!(name: stock[:name],
+                   price: stock[:price],
+                   currency: stock[:currency],
+                   stock_id: stock[:stock_id],
+                   icon_uri: stock[:icon_uri],
+                   stock_snapshot_id: stock_snapshot.id)
     end
-    sum
-    StockSnapshot.create(total_value: sum, currency: "USD", user_id: @user, stock_broker: "etoro",)
-  end
+    rescue => e
+      raise "Error in EtoroStocksService for user #{@user.id}: #{e.message}"
+    end
 end
