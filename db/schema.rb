@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_05_165406) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_07_154545) do
   create_table "api_credentials", force: :cascade do |t|
     t.string "api_id"
     t.string "api_key"
@@ -48,7 +48,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_05_165406) do
     t.string "name", null: false
     t.decimal "price", precision: 10, scale: 2, null: false
     t.string "currency", null: false
-    t.string "stock_id", null: false
+    t.integer "instrument_id", null: false
     t.string "icon_uri"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

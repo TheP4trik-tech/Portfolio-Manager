@@ -47,7 +47,7 @@ class EtoroStocksService
     stocks.map do |stock|
       {
         price: stock["initialAmountInDollars"],
-        stock_id: stock["instrumentID"],
+        instrument_id: stock["instrumentID"],
         currency: "USD", ## default currency for Etoro
         name: "" ## in case of Etoro we don't have stock name, we have to make another API call later to get that
       }
@@ -74,11 +74,11 @@ class EtoroStocksService
     end
     stocks = user_portfolio_stocks
     stocks.map do |stock|
-      instrument = instruments.find { |instrument| instrument["instrumentID"] == stock[:stock_id] }
+      instrument = instruments.find { |instrument| instrument["instrumentID"] == stock[:instrument_id] }
       icon_uri = instrument.dig("images", 0, "uri")
       {
         price: stock[:price],
-        stock_id: stock[:stock_id],
+        instrument_id: stock[:instrument_id],
         currency: stock[:currency],
         name: instrument["instrumentDisplayName"],
         icon_uri: icon_uri
@@ -91,17 +91,21 @@ class EtoroStocksService
     stocks = user_stocks_with_names
     sum = stocks.sum { |stock| stock[:price] }
 
-    stock_snapshot = StockSnapshot.create!(total_value: sum, currency: "USD", user_id: @user.id, stock_broker: "etoro")
+    stock_snapshot = StockSnapshot.create!(total_value: sum, currency: "USD", user: @user, stock_broker: "etoro")
+    timestamp = Time.current
+    records = stocks.map do |stock|
+      {
 
-    stocks.each do |stock|
-      Stock.create!(name: stock[:name],
-                   price: stock[:price],
-                   currency: stock[:currency],
-                   stock_id: stock[:stock_id],
-                   icon_uri: stock[:icon_uri],
-                   stock_snapshot_id: stock_snapshot.id)
+        name: stock[:name],
+        price: stock[:price],
+        currency: stock[:currency],
+        instrument_id: stock[:instrument_id],
+        icon_uri: stock[:icon_uri],
+        stock_snapshot_id: stock_snapshot.id
+      }
     end
+    Stock.insert_all!(records) ## super fast insert, the data is from etoro so there is no SQL injection risk, all data
     rescue => e
-      raise "Error in EtoroStocksService for user #{@user.id}: #{e.message}"
+      raise "Error in EtoroStocksService for user #{@user}: #{e.message}"
     end
 end

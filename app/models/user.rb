@@ -7,6 +7,9 @@ class User < ApplicationRecord
 
   has_many :api_credentials, dependent: :destroy
   has_many :cash_snapshots, dependent: :destroy
+
+  has_many :stock_snapshots, dependent: :destroy
+
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :first_name, presence: true, length: 2..25
   validates :last_name, length: 1..25, allow_blank: true

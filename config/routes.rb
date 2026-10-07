@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "stock/snapshots"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
 
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
   resources :api_credentials, except: [ :show ]
 
   resource :profiles, only: [ :show, :update, :destroy ]
+  resources :stock_snapshots, only: [ :index ]
   resources :cash_snapshots, only: [ :index ]
   get "/docs", to: "pages#docs"
   get "/demo", to: "pages#demo"

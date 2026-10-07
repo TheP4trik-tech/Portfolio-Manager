@@ -25,4 +25,8 @@ development:
   daily_summary_job:
     class: DailySummaryJob
     schedule: "0 0 * * *"
+  etoro_stock_sync:
+    class: EtoroStocksJob
+    schedule: every 1 day
+
 
