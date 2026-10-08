@@ -85,6 +85,7 @@
             <div class="text-base font-bold text-white mt-1">First Scheduled Run</div>
             <p class="text-xs text-slate-400 mt-2 leading-relaxed">
               Your portfolio sync will work automatically every hour, if there is any error, we'll send you an email.
+              Etoro stocks will sync automatically every 12 hours.
               You can change this in your profile.
             </p>
           </div>
@@ -109,16 +110,30 @@
     <section class="space-y-4">
       <h2 class="text-sm font-mono uppercase tracking-widest text-slate-400">System Mechanics</h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div class="bg-slate-950 border border-slate-800/80 rounded-2xl p-6 flex flex-col justify-between">
           <div>
             <div class="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-4 font-mono text-sm">↻</div>
             <h3 class="text-white font-bold text-sm mb-2">Hourly Engine & FX Conversion</h3>
             <p class="text-xs text-slate-400 leading-relaxed">
-              The system automatically syncs your connected accounts, converts foreign currencies to EUR using live exchange rates, and saves an up-to-date snapshot of your portfolio.            </p>
+              The system automatically syncs your connected accounts, converts foreign currencies to EUR using live exchange rates, and saves an up-to-date snapshot of your portfolio.
+            </p>
           </div>
           <div class="mt-4 pt-4 border-t border-slate-900 text-[11px] font-mono text-slate-400">
             Frequency: Every 60 minutes
+          </div>
+        </div>
+
+        <div class="bg-slate-950 border border-emerald-500/20 rounded-2xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4 font-mono text-sm">📈</div>
+            <h3 class="text-white font-bold text-sm mb-2">eToro Stocks & Live Bid Pricing</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Fetches all open stock positions, queries real-time market bid rates in bulk, and recalculates exact market values along with realized and unrealized profit/loss.
+            </p>
+          </div>
+          <div class="mt-4 pt-4 border-t border-slate-900 text-[11px] font-mono text-emerald-400/80">
+            Frequency: Every 12 hours
           </div>
         </div>
 
@@ -138,6 +153,5 @@
         </div>
       </div>
     </section>
-
   </div>
 </div>

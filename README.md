@@ -3,6 +3,9 @@ About project:
 Portfolio summary application, that automatically fetches the data of your stock brokers (currently Etoro and Trading212).
 Converts that into unified EUR snapshots and displays them in Lightweight chart and notifies user via Mail, even if the API fetch goes wrong.
 
+For Etoro stocks, application fetches the data each 12 hours and calculates real time profit loss via market bid price.
+Those stocks are separate and cannot be viewed in chart.
+
 
 ## Tech used
 * Rails 8
@@ -12,7 +15,7 @@ Converts that into unified EUR snapshots and displays them in Lightweight chart 
 * Solid Queue (background jobs)
 * Tailwindcss & DaisyUI (frontend design)
 * Faraday (API calls)
-* RSpec, Faker, Factory bot, webmock (testing)
+* RSpec, Faker, Factory bot, webmock (testing) 
 * rackattack (security)
 * Deployed via Kamal and Hetzner VPS -> http://railsfinancemanager.online
 
@@ -22,6 +25,9 @@ Converts that into unified EUR snapshots and displays them in Lightweight chart 
 * Automatic snapshot currency to EUR exchange (Franfurt API)
 * Automatic backgrounds jobs (each hour) once user enter this API creds.
 * Cash snapshots review 
+* Stock snapshot review (individual stock PlN + invested amount)
+* Automated emails each day
+* Google oauth2
 
 
 ## Setup
@@ -38,3 +44,4 @@ Converts that into unified EUR snapshots and displays them in Lightweight chart 
 - Rails console: `docker compose exec web bin/rails console` (jobs are running when docker compose command used)
 
 # If you have any issues or ideas, write them in discussion, ill be glad to hear that :)
+# Everything related to stocks is not tested yet, i am working on it!

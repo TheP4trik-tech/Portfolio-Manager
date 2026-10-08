@@ -8,6 +8,7 @@ class Ability
      #
      return unless user.present?
     can :manage, ApiCredential, user_id: user.id
+     can :read, StockSnapshot, user_id: user.id
     can :read, CashSnapshot, user_id: user.id
     can :manage, User, id: user.id
 

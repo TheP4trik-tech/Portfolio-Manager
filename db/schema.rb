@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_07_154545) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_08_203006) do
   create_table "api_credentials", force: :cascade do |t|
     t.string "api_id"
     t.string "api_key"
@@ -53,6 +53,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_07_154545) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "stock_snapshot_id", null: false
+    t.decimal "invested_amount"
+    t.decimal "units"
     t.index ["stock_snapshot_id"], name: "index_stocks_on_stock_snapshot_id"
   end
 

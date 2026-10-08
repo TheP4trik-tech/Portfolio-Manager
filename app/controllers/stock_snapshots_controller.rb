@@ -1,8 +1,9 @@
 class StockSnapshotsController < ApplicationController
-  @user = current_user
+  before_action :authenticate_user!
+
   def index
-    @latest_stock_snapshot = @user.stock_snapshots.last
-    @pre_latest_stock_snapshot = @user.stock_snapshots.second_to_last
-    @stocks = @latest_stock_snapshot.stocks
+    @user = current_user
+    user_snapshots = @user.stock_snapshots
+    @last_snapshot = user_snapshots.last
   end
 end

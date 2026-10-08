@@ -12,10 +12,13 @@
       <span class="text-slate-700 text-lg">/</span>
       <div class="flex items-center gap-1">
         <%= link_to "DASHBOARD", root_path, class: "text-slate-400 hover:text-white px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
+        <%= link_to "STOCKS", stock_snapshots_path, class: "text-slate-400 hover:text-white px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
         <%= link_to "API CREDENTIALS", api_credentials_path, class: "text-slate-400 hover:text-white px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
         <%= link_to "PROFILE", profiles_path(current_user), class: "text-slate-400 hover:text-white px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
-        <%= link_to "DOCS", docs_path, class: "text-slate-400 hover:text-white px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
         <%= link_to "DEMO", demo_path, class: "text-slate-400 hover:text-white px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
+        <%= link_to "DEMO-STOCKS", stocks_demo_path, class: "text-slate-400 hover:text-white px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
+        <%= link_to "DOCS", docs_path, class: "text-slate-400 hover:text-white px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
+
       </div>
     </div>
 
@@ -36,10 +39,13 @@
 
       <div class="absolute right-0 top-full mt-3 w-64 bg-slate-900 border border-slate-800 rounded-xl shadow-2xl p-4 flex flex-col gap-2 z-50">
         <%= link_to "DASHBOARD", root_path, class: "text-slate-300 hover:text-white hover:bg-slate-800/80 px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
+        <%= link_to "STOCKS", stock_snapshots_path, class: "text-slate-300 hover:text-white hover:bg-slate-800/80 px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
         <%= link_to "API CREDENTIALS", api_credentials_path, class: "text-slate-300 hover:text-white hover:bg-slate-800/80 px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
         <%= link_to "PROFILE", profiles_path(current_user), class: "text-slate-300 hover:text-white hover:bg-slate-800/80 px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
+        <%= link_to "DEMO GRAPH", demo_path, class: "text-slate-300 hover:text-white hover:bg-slate-800/80 px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
+        <%= link_to "DEMO STOCK", stocks_demo_path, class: "text-slate-300 hover:text-white hover:bg-slate-800/80 px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
         <%= link_to "DOCS", docs_path, class: "text-slate-300 hover:text-white hover:bg-slate-800/80 px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
-        <%= link_to "DEMO", demo_path, class: "text-slate-300 hover:text-white hover:bg-slate-800/80 px-3 py-2 rounded-lg text-xs font-semibold tracking-widest transition-all" %>
+
 
         <div class="border-t border-slate-800 my-1"></div>
 

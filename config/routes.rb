@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get "stock/snapshots"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
 
@@ -13,6 +12,7 @@ Rails.application.routes.draw do
   resources :cash_snapshots, only: [ :index ]
   get "/docs", to: "pages#docs"
   get "/demo", to: "pages#demo"
+  get "/stocks_demo", to: "pages#stocks_demo"
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 

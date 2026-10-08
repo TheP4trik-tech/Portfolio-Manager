@@ -46,8 +46,10 @@ class EtoroStocksService
     if stocks.present? ## not necesarry there, but rails editor warned me and i cant live with this :D
     stocks.map do |stock|
       {
-        price: stock["initialAmountInDollars"],
+        ## this will be filled in get_stock_info
         instrument_id: stock["instrumentID"],
+        invested_amount: stock["initialAmountInDollars"],
+        units: stock["units"],
         currency: "USD", ## default currency for Etoro
         name: "" ## in case of Etoro we don't have stock name, we have to make another API call later to get that
       }
@@ -55,11 +57,14 @@ class EtoroStocksService
     end
   end
 
-  ## Etoro does not provide stock name and icons in portfolio request,
-  ## so we have to make another connection and match Stock IDs in order to get their informations
+  ## Etoro does not provide all information about sotkcs in portfolio request,
+  ## so we have to make another connection and match Stock IDs in order to get individual stock data taht we couldnt get before
   def get_stock_info(user_portfolio_stocks)
+    stocks = user_portfolio_stocks
+    instrument_ids = stocks.map { |stock| stock[:instrument_id] }.uniq
+
     begin
-      ## Getting response
+      ## Getting response with all instrument data we need to fill
       response = etoro_api_connection.get("/api/v1/market-data/instruments")
     rescue Faraday::Error => e
       if e.response[:status] == 401
@@ -69,29 +74,52 @@ class EtoroStocksService
       end
     end
     instruments = response.body["instrumentDisplayDatas"]
-    if instruments.blank?
-      raise "No instruments in response"
+
+
+    begin
+      ## Getting bulk all rates for instruments to calculate profit
+      rates_response = etoro_api_connection.get("/api/v1/market-data/instruments/rates", { instrumentIds: instrument_ids.join(",") })
+    rescue Faraday::Error => e
+      if e.response[:status] == 401
+        raise "Invalid credentials"
+      else
+        raise e
+      end
     end
-    stocks = user_portfolio_stocks
+    rates = rates_response.body["rates"]
+    if rates.blank? || instruments.blank?
+      raise "No rates or instruments returned from eToro API"
+    end
     stocks.map do |stock|
       instrument = instruments.find { |instrument| instrument["instrumentID"] == stock[:instrument_id] }
+
+      rate_info = rates.find { |rate| rate["instrumentID"] == stock[:instrument_id] }
+
+
+      market_rate = rate_info["bid"] ## current market pice
       icon_uri = instrument.dig("images", 0, "uri")
+      calculated_price = (stock[:units].to_f * market_rate.to_f).round(2) # total value held in stock
+      ## final stock blueprint to be sent into database
       {
-        price: stock[:price],
+        price: calculated_price,
         instrument_id: stock[:instrument_id],
         currency: stock[:currency],
+        units: stock[:units],
+        invested_amount: stock[:invested_amount],
         name: instrument["instrumentDisplayName"],
         icon_uri: icon_uri
-
       }
     end
-  end
+    end
+
+
 
   def create_stock_snapshot(user_stocks_with_names)
     stocks = user_stocks_with_names
     sum = stocks.sum { |stock| stock[:price] }
 
     stock_snapshot = StockSnapshot.create!(total_value: sum, currency: "USD", user: @user, stock_broker: "etoro")
+    ## Stock snapshot holds total amount of all stocks combined, stocks are binded via reference with this object
     timestamp = Time.current
     records = stocks.map do |stock|
       {
@@ -99,6 +127,8 @@ class EtoroStocksService
         name: stock[:name],
         price: stock[:price],
         currency: stock[:currency],
+        units: stock[:units],
+        invested_amount: stock[:invested_amount],
         instrument_id: stock[:instrument_id],
         icon_uri: stock[:icon_uri],
         stock_snapshot_id: stock_snapshot.id
