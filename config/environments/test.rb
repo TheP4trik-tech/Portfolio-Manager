@@ -42,6 +42,11 @@ Rails.application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
+  # Test encryption keys for ActiveRecord Encryption in CI
+  config.active_record.encryption.primary_key = "test_primary_key_must_be_configured_32b"
+  config.active_record.encryption.deterministic_key = "test_deterministic_key_must_be_32b"
+  config.active_record.encryption.key_derivation_salt = "test_salt_must_be_configured_32b"
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
